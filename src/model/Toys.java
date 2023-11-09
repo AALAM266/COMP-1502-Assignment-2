@@ -1,36 +1,79 @@
 package model;
 
+
 public abstract class Toys {
 	
-	private String Figures;
-	private String Animals;
-	private String Puzzles;
-	private String BoardGames;
+	private int serialNumber;
+	private String name;
+	private String brand;
+	private int price;
+	private int availabityCount;
+	private int ageAppropriate;
+	private String toyType;
 	
-	public String getFigures() {
-		return Figures;
+	public abstract void temp();
+
+	public int getSerialNumber() {
+		return serialNumber;
 	}
-	public void setFigures(String figures) {
-		Figures = figures;
+
+	public void setSerialNumber(int serialNumber) {
+		this.serialNumber = serialNumber;
 	}
-	public String getAnimals() {
-		return Animals;
+
+	public String getName() {
+		return name;
 	}
-	public void setAnimals(String animals) {
-		Animals = animals;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getPuzzles() {
-		return Puzzles;
+
+	public String getBrand() {
+		return brand;
 	}
-	public void setPuzzles(String puzzles) {
-		Puzzles = puzzles;
+
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
-	public String getBoardGames() {
-		return BoardGames;
+
+	public int getPrice() {
+		return price;
 	}
-	public void setBoardGames(String boardGames) {
-		BoardGames = boardGames;
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
+
+	public int getAvailabityCount() {
+		return availabityCount;
+	}
+
+	public void setAvailabityCount(int availabityCount) {
+		this.availabityCount = availabityCount;
+	}
+
+	public int getAgeAppropriate() {
+		return ageAppropriate;
+	}
+
+	public void setAgeAppropriate(int ageAppropriate) {
+		this.ageAppropriate = ageAppropriate;
+	}
+
+	public String getToyType() {
+		return toyType;
+	}
+
+	public void setToyType(String toyType) {
+		this.toyType = toyType;
+	}
+	
+	
+
+	
+
+
 
 	
 	

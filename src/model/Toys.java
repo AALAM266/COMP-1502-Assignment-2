@@ -11,8 +11,6 @@ public abstract class Toys {
 	private int ageAppropriate;
 	private String toyType;
 	
-	public abstract void temp();
-
 	public int getSerialNumber() {
 		return serialNumber;
 	}
@@ -68,7 +66,10 @@ public abstract class Toys {
 	public void setToyType(String toyType) {
 		this.toyType = toyType;
 	}
-	
+
+		public abstract String getToyDetails(); {
+		
+	}
 	
 
 	

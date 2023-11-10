@@ -2,10 +2,20 @@ package model;
 
 public class BoardGames extends Toys {
 
+    @Override
+    public String getToyDetails() {
+    return "Board Game - Serial Number: " + getSerialNumber() +
+           ", Name: " + getName() +
+           ", Min Players: " + getMinPlayers() +
+           ", Max Players: " + getMaxPlayers() +
+           ", Designers: " + getDesigners();
+    }       
+
     private int minPlayers;
     private int maxPlayers;
     private String designers;
 	public int getMinPlayers() {
+
 		return minPlayers;
 	}
 	public void setMinPlayers(int minPlayers) {
@@ -24,6 +34,4 @@ public class BoardGames extends Toys {
 		this.designers = designers;
 	}
     
-    
-
 }

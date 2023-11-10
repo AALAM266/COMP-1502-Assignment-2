@@ -2,6 +2,12 @@ package model;
 
 public class Animals extends Toys {
 
+    @Override
+    public String getToyDetails() {
+        return 
+        "Animal Toy - Serial Number: " + getSerialNumber() + ", Name: " + getName() + ", Material: " + getMaterial() + ", Size: " + getSize();
+    }
+
     private String material;
     private String size;
     

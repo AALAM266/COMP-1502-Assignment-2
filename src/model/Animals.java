@@ -11,8 +11,14 @@ public class Animals extends Toys {
     @Override
     public String toString() {
         return "Animals{" +
-               "serialNumber=" + getSerialNumber() + ", name='" + getName() +  ", brand='" + getBrand() +  ", price=" + getPrice() + ", availabilityCount=" + getAvailabityCount() +
-               ", ageAppropriate=" + getAgeAppropriate() +", toyType='" + getToyType()+ ", material='" + material + ", size='" + size;
+               "serialNumber=" + getSerialNumber() + ", name='" + getName() + 
+               ", brand='" + getBrand() + 
+               ", price=" + getPrice() +
+               ", availabilityCount=" + getAvailabityCount() +
+               ", ageAppropriate=" + getAgeAppropriate() +
+               ", toyType='" + getToyType()+
+               ", material='" + material+
+               ", size='" + size;
     }
 
     private String material;

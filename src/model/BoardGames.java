@@ -11,19 +11,14 @@ public class BoardGames extends Toys {
     public String toString() {
         return "BoardGames{" +
                "serialNumber=" + getSerialNumber() +
-               ", name='" + getName() + '\'' +
-               ", brand='" + getBrand() + '\'' +
+               ", name='" + getName() +
+               ", brand='" + getBrand() +
                ", price=" + getPrice() +
                ", availabilityCount=" + getAvailabityCount() +
                ", ageAppropriate=" + getAgeAppropriate() +
-               ", toyType='" + getToyType() + '\'' +
-               ", minPlayers=" + minPlayers +
-               ", maxPlayers=" + maxPlayers +
-               ", designers='" + designers;
+               ", toyType='" + getToyType() +
+               ", minPlayers=" + minPlayers + ", maxPlayers=" + maxPlayers + ", designers='" + designers;
     }
-
-
-
 
     private int minPlayers;
     private int maxPlayers;

@@ -1,11 +1,13 @@
 package application;
 
+import controller.AppController;
+
+
 public class AppDriver {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws Exception {
 		
-		System.out.println("test");
+		new AppController();
 
 	}
 

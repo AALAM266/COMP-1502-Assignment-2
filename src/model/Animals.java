@@ -2,28 +2,16 @@ package model;
 
 public class Animals extends Toys {
 
-    @Override
-    public String getToyDetails() {
-        return 
-        "Animal Toy - Serial Number: " + getSerialNumber() + ", Name: " + getName() + ", Material: " + getMaterial() + ", Size: " + getSize();
-    }
-
-    @Override
-    public String toString() {
-        return "Animals{" +
-               "serialNumber=" + getSerialNumber() + ", name='" + getName() + 
-               ", brand='" + getBrand() + 
-               ", price=" + getPrice() +
-               ", availabilityCount=" + getAvailabityCount() +
-               ", ageAppropriate=" + getAgeAppropriate() +
-               ", toyType='" + getToyType()+
-               ", material='" + material+
-               ", size='" + size;
-    }
-
     private String material;
     private String size;
     
+	public Animals(int serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate,
+			String toyType, String material, String size) {
+		super(serialNumber, name, brand, price, availabityCount, ageAppropriate, toyType);
+		this.material = material;
+		this.size = size;
+	}
+
 	public String getMaterial() {
 		return material;
 	}
@@ -36,5 +24,16 @@ public class Animals extends Toys {
 	public void setSize(String size) {
 		this.size = size;
 	}
+	
+	public String toString() {
+    	return super.toString() + ", Material: " + getMaterial() + ", Size: " + getSize();
+    }
 
+	/**
+	 * This method will format the player's name, balance and number of wins
+	 * @return a properly formatted string
+	 */
+	public String format() {
+			return ";" + getMaterial() + ";" + getSize();		
+	}
 }

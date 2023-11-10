@@ -7,6 +7,19 @@ public class Puzzles extends Toys {
         return "Puzzle - Serial Number: " + getSerialNumber() + ", Name: " + getName() + ", Puzzle Type: " + getPuzzleType();
     }
 
+    public String toString() {
+        return "Puzzles{" +
+               "serialNumber=" + getSerialNumber() +
+               ", name='" + getName() +
+               ", brand='" + getBrand() +
+               ", price=" + getPrice() +
+               ", availabilityCount=" + getAvailabityCount() +
+               ", ageAppropriate=" + getAgeAppropriate() +
+               ", toyType='" + getToyType()+
+               ", puzzleType='" + puzzleType;
+    }
+
+
     private String puzzleType;
 
 	public String getPuzzleType() {

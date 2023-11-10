@@ -4,16 +4,31 @@ public class BoardGames extends Toys {
 
     @Override
     public String getToyDetails() {
-    return "Board Game - Serial Number: " + getSerialNumber() +
-           ", Name: " + getName() +
-           ", Min Players: " + getMinPlayers() +
-           ", Max Players: " + getMaxPlayers() +
-           ", Designers: " + getDesigners();
+    return "Board Game - Serial Number: " + getSerialNumber() + ", Name: " + getName() + ", Min Players: " + getMinPlayers() + ", Max Players: " + getMaxPlayers() + ", Designers: " + getDesigners();
     }       
+
+    @Override
+    public String toString() {
+        return "BoardGames{" +
+               "serialNumber=" + getSerialNumber() +
+               ", name='" + getName() + '\'' +
+               ", brand='" + getBrand() + '\'' +
+               ", price=" + getPrice() +
+               ", availabilityCount=" + getAvailabityCount() +
+               ", ageAppropriate=" + getAgeAppropriate() +
+               ", toyType='" + getToyType() + '\'' +
+               ", minPlayers=" + minPlayers +
+               ", maxPlayers=" + maxPlayers +
+               ", designers='" + designers;
+    }
+
+
+
 
     private int minPlayers;
     private int maxPlayers;
     private String designers;
+
 	public int getMinPlayers() {
 
 		return minPlayers;

@@ -2,30 +2,19 @@ package model;
 
 public class BoardGames extends Toys {
 
-    @Override
-    public String getToyDetails() {
-    return "Board Game - Serial Number: " + getSerialNumber() + ", Name: " + getName() + ", Min Players: " + getMinPlayers() + ", Max Players: " + getMaxPlayers() + ", Designers: " + getDesigners();
-    }       
-
-    @Override
-    public String toString() {
-        return "BoardGames{" +
-               "serialNumber=" + getSerialNumber() +
-               ", name='" + getName() +
-               ", brand='" + getBrand() +
-               ", price=" + getPrice() +
-               ", availabilityCount=" + getAvailabityCount() +
-               ", ageAppropriate=" + getAgeAppropriate() +
-               ", toyType='" + getToyType() +
-               ", minPlayers=" + minPlayers + ", maxPlayers=" + maxPlayers + ", designers='" + designers;
-    }
-
     private int minPlayers;
     private int maxPlayers;
     private String designers;
+    
+	public BoardGames(int serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate,
+			String toyType, int minPlayers, int maxPlayers, String designers) {
+		super(serialNumber, name, brand, price, availabityCount, ageAppropriate, toyType);
+		this.minPlayers = minPlayers;
+		this.maxPlayers = maxPlayers;
+		this.designers = designers;
+	}
 
 	public int getMinPlayers() {
-
 		return minPlayers;
 	}
 	public void setMinPlayers(int minPlayers) {
@@ -44,4 +33,16 @@ public class BoardGames extends Toys {
 		this.designers = designers;
 	}
     
+	public String toString() {
+    	return super.toString() + ", Number of Players: " + getMinPlayers() + "-" + getMaxPlayers() + ", Designer(s): " + getDesigners();
+    }
+	
+	/**
+	 * This method will format the player's name, balance and number of wins
+	 * @return a properly formatted string
+	 */
+	public String format() {
+			return ";" + getMinPlayers() + ";" + getMaxPlayers() + ";" + getDesigners();		
+	}
+
 }

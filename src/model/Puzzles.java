@@ -2,25 +2,13 @@ package model;
 
 public class Puzzles extends Toys {
 
-    @Override
-    public String getToyDetails() {
-        return "Puzzle - Serial Number: " + getSerialNumber() + ", Name: " + getName() + ", Puzzle Type: " + getPuzzleType();
-    }
-
-    public String toString() {
-        return "Puzzles{" +
-               "serialNumber=" + getSerialNumber() +
-               ", name='" + getName() +
-               ", brand='" + getBrand() +
-               ", price=" + getPrice() +
-               ", availabilityCount=" + getAvailabityCount() +
-               ", ageAppropriate=" + getAgeAppropriate() +
-               ", toyType='" + getToyType()+
-               ", puzzleType='" + puzzleType;
-    }
-
-
     private String puzzleType;
+
+	public Puzzles(int serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate,
+			String toyType, String puzzleType) {
+		super(serialNumber, name, brand, price, availabityCount, ageAppropriate, toyType);
+		this.puzzleType = puzzleType;
+	}
 
 	public String getPuzzleType() {
 		return puzzleType;
@@ -30,6 +18,16 @@ public class Puzzles extends Toys {
 		this.puzzleType = puzzleType;
 	}
     
+    public String toString() {
+    	return super.toString() + ", Puzzle Type: " + getPuzzleType();
+    }
     
+    /**
+	 * This method will format the player's name, balance and number of wins
+	 * @return a properly formatted string
+	 */
+	public String format() {
+			return ";" + getPuzzleType();	
+	}
 
 }

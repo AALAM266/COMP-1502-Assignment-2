@@ -6,11 +6,23 @@ public abstract class Toys {
 	private int serialNumber;
 	private String name;
 	private String brand;
-	private int price;
+	private double price;
 	private int availabityCount;
 	private int ageAppropriate;
 	private String toyType;
 	
+	//public abstract void temp();
+
+	public Toys(int serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate, String toyType) {
+		this.serialNumber = serialNumber;
+		this.name = name;
+		this.brand = brand;
+		this.price = price;
+		this.availabityCount = availabityCount;
+		this.ageAppropriate = ageAppropriate;
+		this.toyType = toyType;
+	}
+
 	public int getSerialNumber() {
 		return serialNumber;
 	}
@@ -35,7 +47,7 @@ public abstract class Toys {
 		this.brand = brand;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -66,13 +78,21 @@ public abstract class Toys {
 	public void setToyType(String toyType) {
 		this.toyType = toyType;
 	}
-
-		public abstract String getToyDetails(); {
-		
+	
+	public String toString() {
+		return ("Category: " + getToyType() + ", Serial Number: " + getSerialNumber() + ", Name: " + getName() + 
+				", Brand: " + getBrand() + ", Price: " + getPrice() + ", Available Count: " + getAvailabityCount() + 
+				", Age Appropriate: " + getAgeAppropriate());
 	}
-	
 
-	
+	/**
+	 * This method will format the player's name, balance and number of wins
+	 * @return a properly formatted string
+	 */
+	public String format() {
+			return getSerialNumber() + ";" + getName() + ";" + getBrand() + ";" + getPrice() + ";" + getAvailabityCount() + 
+					";" + getAgeAppropriate();		
+	}
 
 
 

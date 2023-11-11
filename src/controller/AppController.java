@@ -1,7 +1,8 @@
 package controller;
 
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 import model.Animals;
@@ -282,36 +283,31 @@ public class AppController {
 	 * 
 	 * @throws Exception
 	 */
-	private void save() throws Exception { // Save data into the txt file when the user chooses the save and exit option
-		File toyInventoryInfo = new File(FILENAME);
-		PrintWriter pw = new PrintWriter(toyInventoryInfo);
+	private void save() { // Save data into the txt file when the user chooses the save and exit option
+		try(FileWriter fw = new FileWriter(FILENAME, true)) {
 
-		for (Toys t : toyInventory) {
-			if (t.getToyType().toLowerCase() == "boardgame") {
-				BoardGames b = (BoardGames)toyInventory.get(1);
-				pw.println(t.format() + b.format());
-			}
-				
-			else if (t.getToyType().toLowerCase() == "figure") {
-				Figures f = (Figures)toyInventory.get(1);
-				pw.println(t.format() + f.format());
-			}
-			
-			else if (t.getToyType().toLowerCase() == "animal") {
-				Animals a = (Animals)toyInventory.get(1);
-				pw.println(t.format() + a.format());
-			}
-			
-			else {
-				Puzzles p = (Puzzles)toyInventory.get(1);
-				pw.println(t.format() + p.format());
-			}
-			
-		}
-
-		pw.close();
-
+			for (Toys t : toyInventory) {
+				if (t.getToyType().toLowerCase().equals("boardgame")) {
+					BoardGames b = (BoardGames) t; 
+					fw.write(t.format() + b.format());
+				}
+				else if (t.getToyType().toLowerCase().equals("figure")) {
+					Figures f = (Figures) t; 
+					fw.write(t.format() + f.format());
+				}
+				else if (t.getToyType().toLowerCase().equals("animal")) {
+					Animals a = (Animals) t; 
+					fw.write(t.format() + a.format());
+				}
+				else {
+					Puzzles p = (Puzzles) t; 
+					fw.write(t.format() + p.format());
+				}
+			}		
+	} catch (IOException e) {
+		e.printStackTrace();
 		appMenu.showSavingMsg();
+	}
 
 	}
 	

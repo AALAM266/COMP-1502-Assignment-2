@@ -121,12 +121,21 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public String promptToyName() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Toy Name: ");
-		String name = input.nextLine().trim().toLowerCase();
-		System.out.println();
+		String name;
+		while (true) {
+			System.out.print("Enter Toy Name: ");
+			name = input.nextLine().trim().toLowerCase();
+	
+			if (name == null || name.isEmpty()) {
+				System.out.println("Name Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
 		return name;
 	}
-	
+
 	/**
 	 * Prompts the user for the toy name if the user selects the search by toy name option
 	 * @return the user's input
@@ -144,9 +153,18 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public String promptBrand() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Toy Brand: ");
-		String brand = input.nextLine().trim().toLowerCase();
-		System.out.println();
+		String brand;
+		while (true) {
+			System.out.print("Enter Brand Name: ");
+			brand = input.nextLine().trim().toLowerCase();
+	
+			if (brand == null || brand.isEmpty()) {
+				System.out.println("Name Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
 		return brand;
 	}
 	
@@ -156,9 +174,30 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public double promptToyPrice() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Toy Price: ");
-		double price = input.nextDouble();
-		System.out.println();
+		double price = -1;
+		while (true) {
+			System.out.print("Enter Toy Price: ");
+			if (input.hasNextDouble()) {
+				price = input.nextDouble();
+				input.nextLine();  
+			} else {
+				System.out.println();
+				System.out.println("Not an Integer Number! Try again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			}
+			
+			if (price < 0) {
+				System.out.println();
+				System.out.println("Price Cannot Be Negative! Try Again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			} else {
+				break;
+			}
+		}
 		return price;
 	}
 	
@@ -167,9 +206,30 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public int promptAvailableCount() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Available Count: ");
-		int availableCount = input.nextInt();
-		System.out.println();
+		int availableCount = -1;
+		while (true) {
+			System.out.print("Enter Available Count: ");
+			if (input.hasNextInt()) {
+				availableCount = input.nextInt();
+				input.nextLine();  
+			} else {
+				System.out.println();
+				System.out.println("Not an Integer Number! Try again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			}
+			
+			if (availableCount < 0) {
+				System.out.println();
+				System.out.println("Available Count Cannot Be Negative! Try Again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			} else {
+				break;
+			}
+		}
 		return availableCount;
 	}
 	
@@ -178,9 +238,30 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public int promptAgeAppropriate() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Appropriate Age: ");
-		int appropriateAge = input.nextInt();
-		System.out.println();
+		int appropriateAge = -1;
+		while (true) {
+			System.out.print("Enter Appropriate Age: ");
+			if (input.hasNextInt()) {
+				appropriateAge = input.nextInt();
+				input.nextLine();  
+			} else {
+				System.out.println();
+				System.out.println("Not an Integer Number! Try again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			}
+			
+			if (appropriateAge < 0) {
+				System.out.println();
+				System.out.println("Appropriate Age Cannot Be Negative! Try Again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			} else {
+				break;
+			}
+		}
 		return appropriateAge;
 	}
 	
@@ -189,9 +270,30 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public int promptMinPlayers() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Minimum Number of Players: ");
-		int minPlayers = input.nextInt();
-		System.out.println();
+		int minPlayers = -1;
+		while (true) {
+			System.out.print("Enter Minimum Number of Players: ");
+			if (input.hasNextInt()) {
+				minPlayers = input.nextInt();
+				input.nextLine();  
+			} else {
+				System.out.println();
+				System.out.println("Not an Integer Number! Try again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			}
+			
+			if (minPlayers < 0) {
+				System.out.println();
+				System.out.println("Minimum Number of Players Cannot Be Negative! Try Again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			} else {
+				break;
+			}
+		}
 		return minPlayers;
 	}
 	
@@ -200,9 +302,30 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public int promptMaxPlayers() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Maximum Number of Players: ");
-		int maxPlayers = input.nextInt();
-		System.out.println();
+		int maxPlayers = -1;
+		while (true) {
+			System.out.print("Enter Maximum Number of Players: ");
+			if (input.hasNextInt()) {
+				maxPlayers = input.nextInt();
+				input.nextLine();  
+			} else {
+				System.out.println();
+				System.out.println("Not an Integer Number! Try again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			}
+			
+			if (maxPlayers < 0) {
+				System.out.println();
+				System.out.println("Maximum Number of Players Cannot Be Negative! Try Again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			} else {
+				break;
+			}
+		}
 		return maxPlayers;
 	}
 	
@@ -211,9 +334,18 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's input
 	 */
 	public String promptDesigners() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Designer Names (Use ',' to separate the names if there is more than one name): ");
-		String designers = input.nextLine().trim().toLowerCase();
-		System.out.println();
+		String designers;
+		while (true) {
+			System.out.print("Enter Designer Names (Use ',' to separate the names if there is more than one name): ");
+			designers = input.nextLine().trim().toLowerCase();
+	
+			if (designers == null || designers.isEmpty()) {
+				System.out.println("Designers Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
 		return designers;
 	}
 	

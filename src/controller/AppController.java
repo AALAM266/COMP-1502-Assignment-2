@@ -38,7 +38,8 @@ public class AppController {
 		int option;
 
 		while (flag) {
-			option = appMenu.showMainMenu();
+			appMenu.showMainMenu();
+			option = appMenu.enterOption();
 
 			switch (option) {
 
@@ -67,7 +68,8 @@ public class AppController {
 		int option;
 
 		while (flag) {
-			option = appMenu.showSearchMenu();
+			appMenu.showSearchMenu();
+			option = appMenu.enterOption();
 			int n = 1;
 
 			switch (option) {
@@ -80,10 +82,13 @@ public class AppController {
 						appMenu.showSearchResultsP1(t, n);
 						n += 1;
 					}
+					
+					
 				}
 				
 				appMenu.showSearchResultsP2(n);
 				break;
+				
 			case 2:
 				String name = appMenu.promptToyName();
 				
@@ -96,6 +101,7 @@ public class AppController {
 				
 				appMenu.showSearchResultsP2(n);
 				break;
+				
 			case 3:
 				String type = appMenu.promptType();
 
@@ -108,10 +114,12 @@ public class AppController {
 				
 				appMenu.showSearchResultsP2(n);
 				break;
+				
 			case 4:
 				appMenu.showMainMenu();
 				flag = false;
 				break;
+				
 			default:
 				appMenu.showInvalidChoice();
 			}
@@ -120,13 +128,61 @@ public class AppController {
 	}
 	
 	private void addNewToy() {
-	// TODO Auto-generated method stub
-	
+		int serialNumber = appMenu.promptSN(toyInventory);
+		
+		String name = appMenu.promptToyName();
+		String brand = appMenu.promptBrand();
+		double price = appMenu.promptToyPrice();
+		int availableCount = appMenu.promptAvailableCount();
+		int appropriateAge = appMenu.promptAgeAppropriate();
+		int minPlayers = appMenu.promptMinPlayers();
+		int maxPlayers = appMenu.promptMaxPlayers();
+		String designers = appMenu.promptDesigners();
+		
+		Toys t = new BoardGames(serialNumber, name, brand, price, availableCount, 
+				appropriateAge, "BoardGame", minPlayers, maxPlayers, designers);
+		toyInventory.add(t);
+		
+		appMenu.showAddNewToySuccess();
+		appMenu.promptPressEnter();
+		
 	}
 	
 	private void removeToy() {
-	// TODO Auto-generated method stub
-	
+		int serialNumber = appMenu.promptSN();
+		
+		for (Toys t : toyInventory) {
+			if (serialNumber == t.getSerialNumber()) {
+					
+				boolean invalidInput = true;
+				char option = appMenu.promptRemoveToy(t);
+
+				while (invalidInput) {
+					invalidInput = false;
+
+					switch (option) {
+
+					case 'y':
+
+						toyInventory.remove(t);
+						appMenu.showRemoveToySuccess();
+						appMenu.promptPressEnter();
+						
+						break;
+
+					case 'n':
+
+						break;
+
+					default:
+						invalidInput = true;
+						appMenu.showInvalidChoice();
+						option = appMenu.promptRemoveToyAgain();
+
+					}
+				}		
+			}	
+		}
 	}
 
 	/**
@@ -210,7 +266,7 @@ public class AppController {
 					}
 				}
 				
-				else if (splittedLine[6].length() == 1) {
+				else if (splittedLine[7].length() == 1) {
 					switch (splittedLine[7].toLowerCase().charAt(0)) {
 					case 's':
 					case 'm':

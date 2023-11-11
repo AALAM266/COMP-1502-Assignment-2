@@ -16,7 +16,9 @@ private Scanner input; // Scanner object to get the user input
 		input = new Scanner(System.in);
 	}
 	
-	
+	/**
+	 * This method will show the welcome message to the user
+	 */
 	public void showWelcomeMsg() {
 		System.out.println("******************************************************");
 		System.out.println("*        WELCOME TO TOY STORE COMPANY!               *");
@@ -27,7 +29,7 @@ private Scanner input; // Scanner object to get the user input
 	/**
 	 * Shows the main menu to the user and prompts the user for the input
 	 */
-	public void showMainMenu() { // Shows the main menu to the user
+	public void showMainMenu() { 
 		System.out.println("How May We Help You?");
 		System.out.println();
 		System.out.println("\t(1) Search Inventory and Purchase Toy");
@@ -37,6 +39,10 @@ private Scanner input; // Scanner object to get the user input
 		System.out.println();
 	}
 		
+	/**
+	 * Prompts the user to choose an option from the main menu
+	 * @return the option chosen by the user
+	 */
 	public int enterOption() {
 		System.out.print("Enter Option: ");
 		int choice = -1;
@@ -65,7 +71,7 @@ private Scanner input; // Scanner object to get the user input
 	/**
 	 * Shows the sub menu to the user and prompts the user for the input
 	 */
-	public void showSearchMenu() { // Shows the sub menu to the user
+	public void showSearchMenu() { 
 		System.out.println("Find Toys With:");
 		System.out.println();
 		System.out.println("\t(1) Serial Number (SN)");
@@ -76,14 +82,14 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
+	 * Prompts the user for the serial number of the toy
 	 * @param toyInventory 
-	 * @return the user's input
+	 * @return the serial number
 	 */
 	public int promptSN(ArrayList<Toys> toyInventory) { // Prompts the user for the toy name if the user selects the search by toy name option
 		System.out.print("Enter Serial Number (SN): ");
 		int serialNumber = -1;
-		
+		while (true) {
 		if (input.hasNextInt()) {
 			serialNumber = input.nextInt();
 			input.nextLine();  
@@ -111,16 +117,16 @@ private Scanner input; // Scanner object to get the user input
 				input.nextLine();  
 				return promptSN(toyInventory);  
 			}	
-		}
-		
+		}	
 		return serialNumber;
+	}
 	}
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the toy name
+	 * @return the toy name
 	 */
-	public String promptToyName() { // Prompts the user for the toy name if the user selects the search by toy name option
+	public String promptToyName() { 
 		String name;
 		while (true) {
 			System.out.print("Enter Toy Name: ");
@@ -137,29 +143,38 @@ private Scanner input; // Scanner object to get the user input
 	}
 
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the toy type
+	 * @return the type of toy
 	 */
-	public String promptType() { // Prompts the user for the toy name if the user selects the search by toy name option
-		System.out.print("Enter Type: ");
-		String type = input.nextLine().trim().toLowerCase();
-		System.out.println();
+	public String promptType() { 
+		String type;
+		while (true) {
+			System.out.print("Enter Toy Type: ");
+			type = input.nextLine().trim().toLowerCase();
+	
+			if (type == null || type.isEmpty()) {
+				System.out.println("Toy Type Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
 		return type;
 	}
 	
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the toy brand
+	 * @return the brand of the toy
 	 */
-	public String promptBrand() { // Prompts the user for the toy name if the user selects the search by toy name option
+	public String promptBrand() { 
 		String brand;
 		while (true) {
 			System.out.print("Enter Brand Name: ");
 			brand = input.nextLine().trim().toLowerCase();
 	
 			if (brand == null || brand.isEmpty()) {
-				System.out.println("Name Cannot Be Empty! Try Again.");
+				System.out.println("Toy Name Cannot Be Empty! Try Again.");
 				System.out.println();
 			} else {
 				break;
@@ -170,10 +185,10 @@ private Scanner input; // Scanner object to get the user input
 	
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the price of the toy
+	 * @return tthe price of the toy
 	 */
-	public double promptToyPrice() { // Prompts the user for the toy name if the user selects the search by toy name option
+	public double promptToyPrice() { 
 		double price = -1;
 		while (true) {
 			System.out.print("Enter Toy Price: ");
@@ -202,8 +217,8 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the availablity count of the selected toy
+	 * @return the availablity count of the selected toy
 	 */
 	public int promptAvailableCount() { // Prompts the user for the toy name if the user selects the search by toy name option
 		int availableCount = -1;
@@ -234,8 +249,8 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the age rating of the toy
+	 * @return the age rating for the toy
 	 */
 	public int promptAgeAppropriate() { // Prompts the user for the toy name if the user selects the search by toy name option
 		int appropriateAge = -1;
@@ -266,10 +281,10 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the minimum players 
+	 * @return the minimum player count
 	 */
-	public int promptMinPlayers() { // Prompts the user for the toy name if the user selects the search by toy name option
+	public int promptMinPlayers() { 
 		int minPlayers = -1;
 		while (true) {
 			System.out.print("Enter Minimum Number of Players: ");
@@ -298,8 +313,8 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the maximum amount of players
+	 * @return the maximum player count
 	 */
 	public int promptMaxPlayers() { // Prompts the user for the toy name if the user selects the search by toy name option
 		int maxPlayers = -1;
@@ -330,8 +345,8 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the toy name if the user selects the search by toy name option
-	 * @return the user's input
+	 * Prompts the user for the designer name of the toy
+	 * @return the designer name
 	 */
 	public String promptDesigners() { // Prompts the user for the toy name if the user selects the search by toy name option
 		String designers;

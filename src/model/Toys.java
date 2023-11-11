@@ -8,10 +8,8 @@ public abstract class Toys {
 	private String brand;
 	private double price;
 	private int availabityCount;
-	private int ageAppropriate;
+	private int appropriateAge;
 	private String toyType;
-	
-	//public abstract void temp();
 
 	public Toys(int serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate, String toyType) {
 		this.serialNumber = serialNumber;
@@ -19,7 +17,7 @@ public abstract class Toys {
 		this.brand = brand;
 		this.price = price;
 		this.availabityCount = availabityCount;
-		this.ageAppropriate = ageAppropriate;
+		this.appropriateAge = ageAppropriate;
 		this.toyType = toyType;
 	}
 
@@ -63,12 +61,12 @@ public abstract class Toys {
 		this.availabityCount = availabityCount;
 	}
 
-	public int getAgeAppropriate() {
-		return ageAppropriate;
+	public int getAppropriateAge() {
+		return appropriateAge;
 	}
 
-	public void setAgeAppropriate(int ageAppropriate) {
-		this.ageAppropriate = ageAppropriate;
+	public void setAppropriateAge(int ageAppropriate) {
+		this.appropriateAge = ageAppropriate;
 	}
 
 	public String getToyType() {
@@ -82,7 +80,7 @@ public abstract class Toys {
 	public String toString() {
 		return ("Category: " + getToyType() + ", Serial Number: " + getSerialNumber() + ", Name: " + getName() + 
 				", Brand: " + getBrand() + ", Price: " + getPrice() + ", Available Count: " + getAvailabityCount() + 
-				", Age Appropriate: " + getAgeAppropriate());
+				", Age Appropriate: " + getAppropriateAge());
 	}
 
 	/**
@@ -91,7 +89,7 @@ public abstract class Toys {
 	 */
 	public String format() {
 			return getSerialNumber() + ";" + getName() + ";" + getBrand() + ";" + getPrice() + ";" + getAvailabityCount() + 
-					";" + getAgeAppropriate();		
+					";" + getAppropriateAge();		
 	}
 
 

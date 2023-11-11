@@ -36,6 +36,7 @@ public class AppController {
 														// user
 		boolean flag = true;
 		int option;
+		appMenu.showWelcomeMsg();
 
 		while (flag) {
 			appMenu.showMainMenu();
@@ -55,6 +56,7 @@ public class AppController {
 			case 4:
 				save();
 				flag = false;
+				break;
 			default:
 				appMenu.showInvalidChoice();
 			}
@@ -75,7 +77,7 @@ public class AppController {
 			switch (option) {
 
 			case 1:
-				int serialNumber = appMenu.promptSN();
+				String serialNumber = appMenu.promptSN();
 				
 				for (Toys t : toyInventory) {
 					if (serialNumber == t.getSerialNumber()) {
@@ -103,7 +105,20 @@ public class AppController {
 				break;
 				
 			case 3:
-				String type = appMenu.promptType();
+				boolean flag1 = true;
+				while (flag1) {		
+					String type = appMenu.promptType();
+					switch (type) {
+					case "boardgame":
+					case "animal":
+					case "figure":
+					case "puzzle":
+						flag1 = false;
+						break;
+	
+					default:
+						appMenu.showInvalidChoice();
+					}
 
 				for (Toys t : toyInventory) {
 					if (type == t.getToyType()) {
@@ -111,12 +126,11 @@ public class AppController {
 						n += 1;
 					}
 				}
-				
+				}
 				appMenu.showSearchResultsP2(n);
 				break;
 				
 			case 4:
-				appMenu.showMainMenu();
 				flag = false;
 				break;
 				
@@ -128,28 +142,105 @@ public class AppController {
 	}
 	
 	private void addNewToy() {
-		int serialNumber = appMenu.promptSN(toyInventory);
-		
+		Toys t;
+		String serialNumber = appMenu.promptSN(toyInventory);
 		String name = appMenu.promptToyName();
 		String brand = appMenu.promptBrand();
 		double price = appMenu.promptToyPrice();
 		int availableCount = appMenu.promptAvailableCount();
 		int appropriateAge = appMenu.promptAgeAppropriate();
-		int minPlayers = appMenu.promptMinPlayers();
-		int maxPlayers = appMenu.promptMaxPlayers();
-		String designers = appMenu.promptDesigners();
 		
-		Toys t = new BoardGames(serialNumber, name, brand, price, availableCount, 
-				appropriateAge, "BoardGame", minPlayers, maxPlayers, designers);
-		toyInventory.add(t);
+		switch (appMenu.promptType()) {
+		case "boardgame":
+			
+			int minPlayers = appMenu.promptMinPlayers();
+			int maxPlayers = appMenu.promptMaxPlayers();
+			String designers = appMenu.promptDesigners();
+			
+			t = new BoardGames(serialNumber, name, brand, price, availableCount, 
+					appropriateAge, "BoardGame", minPlayers, maxPlayers, designers);
+			toyInventory.add(t);
+			
+			break;
+			
+		case "figure":
+			boolean flag = true;
+			while (flag ) {
+				String classification = appMenu.promptClassification();
+				switch (classification) {
+				case "a":
+				case "d":
+				case "h":
+					flag = false;
+					break;
+					
+				default:
+					appMenu.showInvalidChoice();
+				}
+				
+			t = new Figures(serialNumber, name, brand, price, availableCount, 
+					appropriateAge, "figure", classification);
+			toyInventory.add(t);
+			}
+			break;
+			
+		case "animal":
+			boolean flag1 = true;
+			String material = appMenu.promptMaterial();
+			while (flag1) {				
+				String size = appMenu.promptSize();
+				switch (size) {
+				case "s":
+				case "m":
+				case "l":
+					flag1 = false;
+					break;
+					
+				default:
+					appMenu.showInvalidChoice();
+				}
+			
+			
+			t = new Animals(serialNumber, name, brand, price, availableCount, 
+					appropriateAge, "animal", material, size);
+			toyInventory.add(t);
+			}
+			break;
+			
+		case "puzzle":
+			boolean flag2 = true;
+			while (flag2) {		
+				String puzzleType = appMenu.promptPuzzleType();
+				switch (puzzleType) {
+				case "m":
+				case "c":
+				case "l":
+				case "t":
+				case "r":
+					flag2 = false;
+					break;
+					
+				default:
+					appMenu.showInvalidChoice();
+				}
+			
+			t = new Puzzles(serialNumber, name, brand, price, availableCount, 
+					appropriateAge, "puzzle", puzzleType);
+			toyInventory.add(t);
+			}
+			break;
+		default:
+			appMenu.showInvalidChoice();
+		}
 		
+
 		appMenu.showAddNewToySuccess();
 		appMenu.promptPressEnter();
 		
 	}
 	
 	private void removeToy() {
-		int serialNumber = appMenu.promptSN();
+		String serialNumber = appMenu.promptSN();
 		
 		for (Toys t : toyInventory) {
 			if (serialNumber == t.getSerialNumber()) {
@@ -192,23 +283,21 @@ public class AppController {
 	 * @throws Exception
 	 */
 	private void save() throws Exception { // Save data into the txt file when the user chooses the save and exit option
-		File casinoInfo = new File(FILENAME);
-		PrintWriter pw = new PrintWriter(casinoInfo);
-
-		appMenu.showSavingMsg();
+		File toyInventoryInfo = new File(FILENAME);
+		PrintWriter pw = new PrintWriter(toyInventoryInfo);
 
 		for (Toys t : toyInventory) {
-			if (t.getToyType() == "BoardGame") {
+			if (t.getToyType().toLowerCase() == "boardgame") {
 				BoardGames b = (BoardGames)toyInventory.get(1);
 				pw.println(t.format() + b.format());
 			}
 				
-			else if (t.getToyType() == "Figure") {
+			else if (t.getToyType().toLowerCase() == "figure") {
 				Figures f = (Figures)toyInventory.get(1);
 				pw.println(t.format() + f.format());
 			}
 			
-			else if (t.getToyType() == "Animal") {
+			else if (t.getToyType().toLowerCase() == "animal") {
 				Animals a = (Animals)toyInventory.get(1);
 				pw.println(t.format() + a.format());
 			}
@@ -253,7 +342,7 @@ public class AppController {
 					case 't':
 					case 'r':
 						
-						Toys t = new Puzzles(Integer.parseInt(splittedLine[0]), splittedLine[1].toLowerCase(), 
+						Toys t = new Puzzles(splittedLine[0], splittedLine[1].toLowerCase(), 
 								splittedLine[2].toLowerCase(), Double.parseDouble(splittedLine[3]), 
 								Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), 
 								"Puzzle", splittedLine[6].toLowerCase());
@@ -272,7 +361,7 @@ public class AppController {
 					case 'm':
 					case 'l':
 						
-						Toys t = new Animals(Integer.parseInt(splittedLine[0]), splittedLine[1].toLowerCase(), 
+						Toys t = new Animals(splittedLine[0], splittedLine[1].toLowerCase(), 
 								splittedLine[2].toLowerCase(), Double.parseDouble(splittedLine[3]), 
 								Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), 
 								"Animal", splittedLine[6].toLowerCase(), splittedLine[7].toLowerCase());
@@ -291,7 +380,7 @@ public class AppController {
 					case 'd':
 					case 'h':
 						
-						Toys t = new Figures(Integer.parseInt(splittedLine[0]), splittedLine[1].toLowerCase(), 
+						Toys t = new Figures(splittedLine[0], splittedLine[1].toLowerCase(), 
 								splittedLine[2].toLowerCase(), Double.parseDouble(splittedLine[3]), 
 								Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), 
 								"Figure", splittedLine[6].toLowerCase());
@@ -305,11 +394,12 @@ public class AppController {
 				}
 				
 				else {
-					Toys t = new BoardGames(Integer.parseInt(splittedLine[0]), splittedLine[1].toLowerCase(), 
+					String[] numberOfPlayers = splittedLine[6].split("-");
+					Toys t = new BoardGames(splittedLine[0], splittedLine[1].toLowerCase(), 
 							splittedLine[2].toLowerCase(), Double.parseDouble(splittedLine[3]), 
 							Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), 
-							"BoardGame", Integer.parseInt(splittedLine[6]), Integer.parseInt(splittedLine[7]), 
-							splittedLine[8].toLowerCase());
+							"BoardGame", Integer.parseInt(numberOfPlayers[0]), Integer.parseInt(numberOfPlayers[1]), 
+							splittedLine[7].toLowerCase());
 					toyInventory.add(t);
 				}
 			}

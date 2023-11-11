@@ -61,10 +61,9 @@ private Scanner input; // Scanner object to get the user input
 			System.out.println();
 			System.out.println("This is not a valid option! Try again.");
 			System.out.println();
-			input.nextLine();  
 			return enterOption(); 
 		}
-		
+		System.out.println();
 		return choice;
 	}		
 	
@@ -86,26 +85,23 @@ private Scanner input; // Scanner object to get the user input
 	 * @param toyInventory 
 	 * @return the serial number
 	 */
-	public int promptSN(ArrayList<Toys> toyInventory) { // Prompts the user for the toy name if the user selects the search by toy name option
+	public String promptSN(ArrayList<Toys> toyInventory) { // Prompts the user for the toy name if the user selects the search by toy name option
 		System.out.print("Enter Serial Number (SN): ");
-		int serialNumber = -1;
+		String serialNumber = "0";
 		while (true) {
 		if (input.hasNextInt()) {
-			serialNumber = input.nextInt();
-			input.nextLine();  
+			serialNumber = input.nextLine().trim().toLowerCase();
 		} else {
 			System.out.println();
 			System.out.println("Serial Number should only contain digits! Try again.");
 			System.out.println();
-			input.nextLine();  
 			return promptSN(toyInventory);  
 		}
 		
-		if (String.valueOf(serialNumber).length() < 10) {
+		if (serialNumber.length() < 10) {
 			System.out.println();
 			System.out.println("The Serial Number's length MUST Be 10 Digits! Try again.");
 			System.out.println();
-			input.nextLine();  
 			return promptSN(toyInventory);  
 		}
 		
@@ -114,10 +110,10 @@ private Scanner input; // Scanner object to get the user input
 				System.out.println();
 				System.out.println("A Toy With This Serial Number Already Exists! Try Again.");
 				System.out.println();
-				input.nextLine();  
 				return promptSN(toyInventory);  
 			}	
 		}	
+		System.out.println();
 		return serialNumber;
 	}
 	}
@@ -139,6 +135,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return name;
 	}
 
@@ -159,6 +156,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return type;
 	}
 	
@@ -180,13 +178,14 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return brand;
 	}
 	
 	
 	/**
 	 * Prompts the user for the price of the toy
-	 * @return tthe price of the toy
+	 * @return the price of the toy
 	 */
 	public double promptToyPrice() { 
 		double price = -1;
@@ -213,6 +212,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return price;
 	}
 	
@@ -245,6 +245,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return availableCount;
 	}
 	
@@ -277,6 +278,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return appropriateAge;
 	}
 	
@@ -309,6 +311,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return minPlayers;
 	}
 	
@@ -341,6 +344,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return maxPlayers;
 	}
 	
@@ -361,6 +365,7 @@ private Scanner input; // Scanner object to get the user input
 				break;
 			}
 		}
+		System.out.println();
 		return designers;
 	}
 	
@@ -376,62 +381,9 @@ private Scanner input; // Scanner object to get the user input
 		System.out.println();
 		System.out.print("Enter option number to purchase: ");
 		int mainChoice = input.nextInt();
+		System.out.println();
 		return mainChoice;
 	}
-	
-//	public int showSNSearchResults(ArrayList<Toys> toyInventory, int serialNumber) { // Shows the search results to the user
-//		int n = 1;
-//		System.out.println("Here are the search results:");
-//		System.out.println();
-//		for (Toys t : toyInventory) {
-//			if (serialNumber == t.getSerialNumber()) {
-//				System.out.println("\t(" + n + ") " + t);
-//				n += 1;
-//			}
-//		}
-//		
-//		System.out.println("\t(" + n + ") Back to Main Menu");
-//		System.out.println();
-//		System.out.print("Enter option number to purchase: ");
-//		int mainChoice = input.nextInt();
-//		return mainChoice;
-//	}
-//		
-//	public int showToyNameSearchResults(ArrayList<Toys> toyInventory, String name) { // Shows the search results to the user
-//		int n = 1;
-//		System.out.println("Here are the search results:");
-//		System.out.println();
-//		for (Toys t : toyInventory) {
-//			if (name == t.getName()) {
-//				System.out.println("\t(" + n + ") " + t);
-//				n += 1;
-//			}
-//		}
-//		
-//		System.out.println("\t(" + n + ") Back to Main Menu");
-//		System.out.println();
-//		System.out.print("Enter option number to purchase: ");
-//		int mainChoice = input.nextInt();
-//		return mainChoice;
-//	}
-//	
-//	public int showTypeSearchResults(ArrayList<Toys> toyInventory, String toyType) { // Shows the search results to the user
-//		int n = 1;
-//		System.out.println("Here are the search results:");
-//		System.out.println();
-//		for (Toys t : toyInventory) {
-//			if (toyType == t.getToyType()) {
-//				System.out.println("\t(" + n + ") " + t);
-//				n += 1;
-//			}
-//		}
-//		
-//		System.out.println("\t(" + n + ") Back to Main Menu");
-//		System.out.println();
-//		System.out.print("Enter option number to purchase: ");
-//		int mainChoice = input.nextInt();
-//		return mainChoice;
-//	}
 	
 	public void showTransactionSuccess() {
 		System.out.println("The Transaction Successfully Terminated!");
@@ -462,7 +414,6 @@ private Scanner input; // Scanner object to get the user input
 	 * Informs the user that they entered an invalid choice
 	 */
 	public void showInvalidChoice() {
-		System.out.println();
 		System.out.println("Invalid choice");
 		System.out.println();
 	}
@@ -506,13 +457,12 @@ private Scanner input; // Scanner object to get the user input
 	}
 
 
-	public int promptSN() {
+	public String promptSN() {
 		System.out.print("Enter Serial Number (SN): ");
-		int serialNumber = -1;
+		String serialNumber = "0";
 		
 		if (input.hasNextInt()) {
-			serialNumber = input.nextInt();
-			input.nextLine();  
+			serialNumber = input.nextLine().trim().toLowerCase();
 		} else {
 			System.out.println();
 			System.out.println("Serial Number should only contain digits! Try again.");
@@ -521,15 +471,90 @@ private Scanner input; // Scanner object to get the user input
 			return promptSN();  
 		}
 		
-		if (String.valueOf(serialNumber).length() < 10) {
+		if (serialNumber.length() != 10) {
 			System.out.println();
 			System.out.println("The Serial Number's length MUST Be 10 Digits! Try again.");
 			System.out.println();
-			input.nextLine();  
 			return promptSN();  
 		}
-		
+		System.out.println();
 		return serialNumber;
+	}
+
+	/**
+	 * Prompts the user for the classification of the figure
+	 * @return the classification name
+	 */
+	public String promptClassification() { // Prompts the user for the toy name if the user selects the search by toy name option
+		String classification;
+		while (true) {
+			System.out.print("Enter Classification (A/D/H): ");
+			classification = input.nextLine().trim().toLowerCase();
+	
+			if (classification == null || classification.isEmpty()) {
+				System.out.println("Classification Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
+		System.out.println();
+		return classification;
+	}
+
+	/**
+	 * Prompts the user for the type of the puzzle
+	 * @return the puzzle type
+	 */
+	public String promptPuzzleType() { // Prompts the user for the toy name if the user selects the search by toy name option
+		String puzzleType;
+		while (true) {
+			System.out.print("Enter Puzzle Type (M/C/L/T/R): ");
+			puzzleType = input.nextLine().trim().toLowerCase();
+	
+			if (puzzleType == null || puzzleType.isEmpty()) {
+				System.out.println("Puzzle Type Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
+		System.out.println();
+		return puzzleType;
+	}
+
+	public String promptMaterial() {
+		String material;
+		while (true) {
+			System.out.print("Enter Material: ");
+			material = input.nextLine().trim().toLowerCase();
+	
+			if (material == null || material.isEmpty()) {
+				System.out.println("Material Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
+		System.out.println();
+		return material;
+	}
+
+	public String promptSize() {
+		String size;
+		while (true) {
+			System.out.print("Enter Size (S/M/L): ");
+			size = input.nextLine().trim().toLowerCase();
+	
+			if (size == null || size.isEmpty()) {
+				System.out.println("Size Cannot Be Empty! Try Again.");
+				System.out.println();
+			} else {
+				break;
+			}
+		}
+		System.out.println();
+		return size;
 	}
 
 }

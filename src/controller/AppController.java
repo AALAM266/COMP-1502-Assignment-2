@@ -200,6 +200,7 @@ public class AppController {
 	}
 	
 	private void addNewToy() {
+		boolean flag3 = true;
 		Toys t;
 		String serialNumber = appMenu.promptSN(toyInventory);
 		String name = appMenu.promptToyName();
@@ -208,89 +209,93 @@ public class AppController {
 		int availableCount = appMenu.promptAvailableCount();
 		int appropriateAge = appMenu.promptAgeAppropriate();
 		
-		switch (appMenu.promptType()) {
-		case "boardgame":
-			
-			int minPlayers = appMenu.promptMinPlayers();
-			int maxPlayers = appMenu.promptMaxPlayers();
-			String designers = appMenu.promptDesigners();
-			
-			t = new BoardGames(serialNumber, name, brand, price, availableCount, 
-					appropriateAge, "BoardGame", minPlayers, maxPlayers, designers);
-			toyInventory.add(t);
-			
-			break;
-			
-		case "figure":
-			boolean flag = true;
-			while (flag ) {
-				String classification = appMenu.promptClassification();
-				switch (classification) {
-				case "a":
-				case "d":
-				case "h":
-					flag = false;
-					break;
-					
-				default:
-					appMenu.showInvalidChoice();
-				}
+		while (flag3) {
+			switch (appMenu.promptType()) {
+			case "boardgame":
 				
-			t = new Figures(serialNumber, name, brand, price, availableCount, 
-					appropriateAge, "figure", classification);
-			toyInventory.add(t);
-			}
-			break;
-			
-		case "animal":
-			boolean flag1 = true;
-			String material = appMenu.promptMaterial();
-			while (flag1) {				
-				String size = appMenu.promptSize();
-				switch (size) {
-				case "s":
-				case "m":
-				case "l":
-					flag1 = false;
-					break;
+				int minPlayers = appMenu.promptMinPlayers();
+				int maxPlayers = appMenu.promptMaxPlayers();
+				String designers = appMenu.promptDesigners();
+				
+				t = new BoardGames(serialNumber, name, brand, price, availableCount, 
+						appropriateAge, "BoardGame", minPlayers, maxPlayers, designers);
+				toyInventory.add(t);
+				flag3 = false;
+				break;
+				
+			case "figure":
+				boolean flag = true;
+				while (flag ) {
+					String classification = appMenu.promptClassification();
+					switch (classification) {
+					case "a":
+					case "d":
+					case "h":
+						flag = false;
+						break;
+						
+					default:
+						appMenu.showInvalidChoice();
+					}
 					
-				default:
-					appMenu.showInvalidChoice();
+				t = new Figures(serialNumber, name, brand, price, availableCount, 
+						appropriateAge, "figure", classification);
+				toyInventory.add(t);
 				}
-			
-			
-			t = new Animals(serialNumber, name, brand, price, availableCount, 
-					appropriateAge, "animal", material, size);
-			toyInventory.add(t);
-			}
-			break;
-			
-		case "puzzle":
-			boolean flag2 = true;
-			while (flag2) {		
-				String puzzleType = appMenu.promptPuzzleType();
-				switch (puzzleType) {
-				case "m":
-				case "c":
-				case "l":
-				case "t":
-				case "r":
-					flag2 = false;
-					break;
-					
-				default:
-					appMenu.showInvalidChoice();
+				flag3 = false;
+				break;
+				
+			case "animal":
+				boolean flag1 = true;
+				String material = appMenu.promptMaterial();
+				while (flag1) {				
+					String size = appMenu.promptSize();
+					switch (size) {
+					case "s":
+					case "m":
+					case "l":
+						flag1 = false;
+						break;
+						
+					default:
+						appMenu.showInvalidChoice();
+					}
+				
+				
+				t = new Animals(serialNumber, name, brand, price, availableCount, 
+						appropriateAge, "animal", material, size);
+				toyInventory.add(t);
 				}
-			
-			t = new Puzzles(serialNumber, name, brand, price, availableCount, 
-					appropriateAge, "puzzle", puzzleType);
-			toyInventory.add(t);
+				flag3 = false;
+				break;
+				
+			case "puzzle":
+				boolean flag2 = true;
+				while (flag2) {		
+					String puzzleType = appMenu.promptPuzzleType();
+					switch (puzzleType) {
+					case "m":
+					case "c":
+					case "l":
+					case "t":
+					case "r":
+						flag2 = false;
+						break;
+						
+					default:
+						appMenu.showInvalidChoice();
+					}
+				
+				t = new Puzzles(serialNumber, name, brand, price, availableCount, 
+						appropriateAge, "puzzle", puzzleType);
+				toyInventory.add(t);
+				}
+				flag3 = false;
+				break;
+			default:
+				appMenu.showInvalidChoice();
 			}
-			break;
-		default:
-			appMenu.showInvalidChoice();
 		}
-		
 
 		appMenu.showAddNewToySuccess();
 		appMenu.promptPressEnter();

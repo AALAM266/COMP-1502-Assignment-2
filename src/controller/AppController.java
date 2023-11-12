@@ -79,9 +79,10 @@ public class AppController {
 
 			case 1:
 				String serialNumber = appMenu.promptSN();
-				
+
+				System.out.println("Number of toys in inventory: " + toyInventory.size());
 				for (Toys t : toyInventory) {
-					if (serialNumber.equals(t.getSerialNumber())) {
+					if (serialNumber.equalsIgnoreCase(t.getSerialNumber())) {
 						appMenu.showSearchResultsP1(t, n);
 						n += 1;
 					}
@@ -97,7 +98,7 @@ public class AppController {
 				
 				System.out.println("Number of toys in inventory: " + toyInventory.size());
 				for (Toys t : toyInventory) {
-					if (name.equals(t.getName())) {
+					if (name.equalsIgnoreCase(t.getName())) {
 						appMenu.showSearchResultsP1(t, n);
 						n += 1;
 					}
@@ -121,9 +122,10 @@ public class AppController {
 					default:
 						appMenu.showInvalidChoice();
 					}
-
+					
+				System.out.println("Number of toys in inventory: " + toyInventory.size());
 				for (Toys t : toyInventory) {
-					if (type.equals(t.getToyType())) {
+					if (type.equalsIgnoreCase(t.getToyType())) {
 						appMenu.showSearchResultsP1(t, n);
 						n += 1;
 					}

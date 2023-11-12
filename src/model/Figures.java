@@ -52,7 +52,7 @@ public class Figures extends Toys {
 	 */
 	@Override
 	public String format() {
-		return ";" + getClassification();
+		return ";" + getClassification() + "\n";	
 	}
 
 }

@@ -12,12 +12,26 @@ import model.Puzzles;
 import model.Toys;
 import view.AppMenu;
 
+/**
+ * The AppController class is responsible for managing the application, it interacts with the user through the AppMenu.
+ * It contains methods to add new toys, search for specific toys, and remove toys.
+ * The main entry point of the application is the launchApplication() method, which
+ * displays the main menu to the user and calls the appropriate methods based on the
+ * user's choice.
+ * 
+ * @author Akheel Alam Eddin and Keegan Hong
+ * @version 1.0
+ */
 public class AppController {
 
     private final String FILENAME = "res/toys.txt";
     private AppMenu appMenu;
     private ArrayList<Toys> toyInventory;
     
+	/**
+	 * Constructor for the AppController class
+	 * @throws Exception 
+	 */
     public AppController() throws Exception {
     	toyInventory = new ArrayList<>();
     	appMenu = new AppMenu();
@@ -33,8 +47,7 @@ public class AppController {
 	 * 
 	 * @throws Exception
 	 */
-	public void launchApplication() throws Exception { // This method will launch the app and show the main menu to the
-														// user
+	public void launchApplication() throws Exception { 
 		boolean flag = true;
 		int option;
 		appMenu.showWelcomeMsg();
@@ -65,6 +78,9 @@ public class AppController {
 
 	}
     
+	/**
+	 * This method is called from the launchApplication method, it will search for toys based on the user input and allow the user to purchase them
+	 */
 	private void searchAndPurchase() {
 		
 		boolean flag = true;
@@ -199,6 +215,10 @@ public class AppController {
 	
 	}
 	
+	/**
+	 * This method is called from the launchApplication method, it will prompt the user for all of the toy's attributes then it
+	 * will add it to the arraylist that will eventually get stored in the txt file
+	 */
 	private void addNewToy() {
 		boolean flag3 = true;
 		Toys t;
@@ -302,6 +322,9 @@ public class AppController {
 		
 	}
 	
+	/**
+	 * This method is called from the launchApplication method, it will prompt the user for the serial number of the toy they want to remove from the inventory
+	 */
 	private void removeToy() {
 		String serialNumber = appMenu.promptSN();
 		
@@ -341,8 +364,7 @@ public class AppController {
 
 	/**
 	 * This method is called from the launchApplication method, it will save the
-	 * data into the txt file
-	 * 
+	 * data into the txt file when the program is shut down
 	 * @throws Exception
 	 */
 	private void save() { // Save data into the txt file when the user chooses the save and exit option
@@ -377,11 +399,10 @@ public class AppController {
 	
 	/**
 	 * This method is called from the constructor, it will load the data from the
-	 * txt file into the arraylist
-	 * 
+	 * txt resource file into the arraylist to be used as the inventory for the application
 	 * @throws Exception
 	 */
-	private void loadData() throws Exception { // Load data from CasinoInfo.txt into arraylist
+	private void loadData() throws Exception { 
 		File toyInventoryInfo = new File(FILENAME);
 		String currentLine;
 		String[] splittedLine;

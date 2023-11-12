@@ -28,6 +28,7 @@ class PuzzleTest {
         assertEquals(42.83, puzzle.getPrice()); 
         assertEquals(1, puzzle.getAvailabityCount());
         assertEquals(4, puzzle.getAppropriateAge());
+        assertEquals("Puzzle", puzzle.getToyType());
         assertEquals("m", puzzle.getPuzzleType());
 
 

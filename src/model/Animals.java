@@ -72,6 +72,6 @@ public class Animals extends Toys {
 	 */
 	@Override
 	public String format() {
-			return ";" + getMaterial() + ";" + getSize();		
+			return ";" + getMaterial() + ";" + getSize() + "\n";			
 	}
 }

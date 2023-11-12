@@ -95,6 +95,7 @@ private Scanner input; // Scanner object to get the user input
 			System.out.println();
 			System.out.println("Serial Number should only contain digits! Try again.");
 			System.out.println();
+			input.nextLine();  
 			return promptSN(toyInventory);  
 		}
 		
@@ -110,6 +111,7 @@ private Scanner input; // Scanner object to get the user input
 				System.out.println();
 				System.out.println("A Toy With This Serial Number Already Exists! Try Again.");
 				System.out.println();
+				input.nextLine();  
 				return promptSN(toyInventory);  
 			}	
 		}	
@@ -206,7 +208,6 @@ private Scanner input; // Scanner object to get the user input
 				System.out.println();
 				System.out.println("Price Cannot Be Negative! Try Again.");
 				System.out.println();
-				input.nextLine();  
 				continue;  
 			} else {
 				break;
@@ -235,11 +236,10 @@ private Scanner input; // Scanner object to get the user input
 				continue;  
 			}
 			
-			if (availableCount < 0) {
+			if (availableCount <= 0) {
 				System.out.println();
-				System.out.println("Available Count Cannot Be Negative! Try Again.");
-				System.out.println();
-				input.nextLine();  
+				System.out.println("Available Count Cannot Be Negative Or Zero! Try Again.");
+				System.out.println(); 
 				continue;  
 			} else {
 				break;
@@ -268,11 +268,10 @@ private Scanner input; // Scanner object to get the user input
 				continue;  
 			}
 			
-			if (appropriateAge < 0) {
+			if (appropriateAge <= 0) {
 				System.out.println();
-				System.out.println("Appropriate Age Cannot Be Negative! Try Again.");
+				System.out.println("Appropriate Age Cannot Be Negative Or Zero! Try Again.");
 				System.out.println();
-				input.nextLine();  
 				continue;  
 			} else {
 				break;

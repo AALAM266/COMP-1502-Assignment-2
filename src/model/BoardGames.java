@@ -91,7 +91,7 @@ public class BoardGames extends Toys {
 	 */
 	@Override
 	public String format() {
-			return ";" + getMinPlayers() + ";" + getMaxPlayers() + ";" + getDesigners();		
+			return ";" + getMinPlayers() + ";" + getMaxPlayers() + ";" + getDesigners() + "\n";		
 	}
 
 }

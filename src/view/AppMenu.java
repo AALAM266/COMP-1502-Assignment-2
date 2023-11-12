@@ -96,8 +96,8 @@ private Scanner input; // Scanner object to get the user input
 		System.out.print("Enter Serial Number (SN): ");
 		String serialNumber = "0";
 		while (true) {
-		if (input.hasNextInt()) {
-			serialNumber = input.nextLine().trim().toLowerCase();
+		if (input.hasNextLine()) {
+			serialNumber = input.nextLine().trim();
 		} else {
 			System.out.println();
 			System.out.println("Serial Number should only contain digits! Try again.");
@@ -114,7 +114,7 @@ private Scanner input; // Scanner object to get the user input
 		}
 		
 		for (Toys t : toyInventory) {
-			if (serialNumber == t.getSerialNumber()) {
+			if (serialNumber.equals(t.getSerialNumber())) {
 				System.out.println();
 				System.out.println("A Toy With This Serial Number Already Exists! Try Again.");
 				System.out.println();

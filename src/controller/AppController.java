@@ -350,7 +350,7 @@ public class AppController {
 		String serialNumber = appMenu.promptSN();
 		
 		for (Toys t : toyInventory) {
-			if (serialNumber == t.getSerialNumber()) {
+			if (serialNumber.equals(t.getSerialNumber())) {
 					
 				boolean invalidInput = true;
 				char option = appMenu.promptRemoveToy(t);

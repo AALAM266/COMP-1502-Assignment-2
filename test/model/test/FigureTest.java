@@ -30,7 +30,7 @@ class FigureTest {
         assertEquals("Figure", figure.getToyType());
         assertEquals("h", figure.getClassification());
 
-        String expectedToString = "Figure, Serial Number: 1024162826, Name: japanese traditional dolls, Brand: game demon, Price: 139.99, Available Count: 12, Age Appropriate: 7, Classification: h";
+        String expectedToString = "Category: Figure, Serial Number: 1024162826, Name: japanese traditional dolls, Brand: game demon, Price: 139.99, Available Count: 12, Age Appropriate: 7, Classification: h";
         assertEquals(expectedToString, figure.toString());
 
     }

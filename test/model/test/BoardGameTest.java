@@ -33,7 +33,7 @@ class BoardGameTest {
         assertEquals("milla baxter,harpreet reilly", boardGame.getDesigners());
 
         
-        String expectedToString = "Category: Board Game, Serial Number: 9870097486, Name: castle risk, Brand: game sky, Price: 64.1, Available Count: 10, Age Appropriate: 2, Number of Players: 2-4, Size: milla baxter,harpreet reilly";
+        String expectedToString = "Category: Board Game, Serial Number: 9870097486, Name: castle risk, Brand: game sky, Price: 64.1, Available Count: 10, Age Appropriate: 2, Number of Players: 2-4, Designer(s): milla baxter,harpreet reilly";
         assertEquals(expectedToString, boardGame.toString());
     }
 }

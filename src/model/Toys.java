@@ -158,8 +158,8 @@ public abstract class Toys {
 	* @return the formatted string
 	*/
 	public String format() {
-			return getSerialNumber() + ";" + getName() + ";" + getBrand() + ";" + getPrice() + ";" + getAvailabityCount() + 
-					";" + getAppropriateAge();		
+			return (getSerialNumber() + ";" + getName() + ";" + getBrand() + ";" + getPrice() + ";" + getAvailabityCount() + 
+					";" + getAppropriateAge());		
 	}
 
 

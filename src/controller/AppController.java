@@ -457,16 +457,6 @@ public class AppController {
 					}
 				}
 				
-				else if (splittedLine.length == 8) {
-					
-					Toys t = new Animals(splittedLine[0], splittedLine[1].toLowerCase(), 
-							splittedLine[2].toLowerCase(), Double.parseDouble(splittedLine[3]), 
-							Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), 
-							"Animal", splittedLine[6].toLowerCase(), splittedLine[7].toLowerCase());
-					toyInventory.add(t);
-					
-				}
-				
 				else if (splittedLine[6].length() == 1) {
 					switch (splittedLine[6].toLowerCase().charAt(0)) {
 					case 'a':
@@ -486,20 +476,30 @@ public class AppController {
 					}
 				}
 				
-				else {
-					String[] numberOfPlayers = splittedLine[6].split("-");
-					Toys t = new BoardGames(splittedLine[0], splittedLine[1].toLowerCase(), 
+				else if (splittedLine.length == 8) {
+					if (splittedLine[7].length() != 1) {
+						String[] numberOfPlayers = splittedLine[6].split("-");
+						Toys t = new BoardGames(splittedLine[0], splittedLine[1].toLowerCase(), 
 							splittedLine[2].toLowerCase(), Double.parseDouble(splittedLine[3]), 
 							Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), 
 							"BoardGame", Integer.parseInt(numberOfPlayers[0]), Integer.parseInt(numberOfPlayers[1]), 
 							splittedLine[7].toLowerCase());
-					toyInventory.add(t);
+						toyInventory.add(t);
+					}
+
+					else {
+						Toys t = new Animals(splittedLine[0], splittedLine[1].toLowerCase(), 
+								splittedLine[2].toLowerCase(), Double.parseDouble(splittedLine[3]), 
+								Integer.parseInt(splittedLine[4]), Integer.parseInt(splittedLine[5]), 
+								"Animal", splittedLine[6].toLowerCase(), splittedLine[7].toLowerCase());
+						toyInventory.add(t);
+						
+					}
 				}
 			}
-
 			fileReader.close();
 		}
+	
 	}
-
     
 }

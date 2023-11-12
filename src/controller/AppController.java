@@ -84,16 +84,16 @@ public class AppController {
 	private void searchAndPurchase() {
 		
 		boolean flag = true;
-		boolean flag2 = true;
-		int choice = -1;
-		int option;
-		ArrayList<Toys> toySearchResults = new ArrayList<>();
-		
+			
 		while (flag) {
+			
+			boolean flag2 = true;
+			ArrayList<Toys> toySearchResults = new ArrayList<>();
 			appMenu.showSearchMenu();
-			option = appMenu.enterOption();
+			int option = appMenu.enterOption();
 			int n = 1;
-
+			int choice = -1;
+			
 			switch (option) {
 
 			case 1:
@@ -122,6 +122,11 @@ public class AppController {
 					
 					else {
 						toySearchResults.remove(choice - 1);
+						toyInventory.remove(choice);
+						appMenu.showTransactionSuccess();
+						appMenu.promptPressEnter();
+						flag2 = false;
+						
 					}
 					
 				}
@@ -142,6 +147,7 @@ public class AppController {
 				
 				while (flag2) {
 					choice = appMenu.showSearchResultsP3(n);
+					boolean invalidCheck = true;
 					
 					if (choice == n) {
 						flag2 = false;
@@ -150,10 +156,16 @@ public class AppController {
 					
 					else if (choice > n || choice < 1) {
 						appMenu.showInvalidChoice();
+						invalidCheck = false;
+
 					}
 					
-					else {
+					else if (choice < n && choice >= 1 && invalidCheck){
 						toySearchResults.remove(choice - 1);
+						toyInventory.remove(choice);
+						appMenu.showTransactionSuccess();
+						appMenu.promptPressEnter();
+						flag2 = false;
 					}
 					
 				}
@@ -199,6 +211,9 @@ public class AppController {
 					
 					else {
 						toySearchResults.remove(choice - 1);
+						toyInventory.remove(choice);
+						appMenu.showTransactionSuccess();
+						appMenu.promptPressEnter();
 					}
 					
 				}
@@ -211,6 +226,7 @@ public class AppController {
 			default:
 				appMenu.showInvalidChoice();
 			}
+			
 		}
 	
 	}
@@ -221,7 +237,7 @@ public class AppController {
 	 */
 	private void addNewToy() {
 		boolean flag3 = true;
-		Toys t;
+		
 		String serialNumber = appMenu.promptSN(toyInventory);
 		String name = appMenu.promptToyName();
 		String brand = appMenu.promptBrand();
@@ -230,6 +246,7 @@ public class AppController {
 		int appropriateAge = appMenu.promptAgeAppropriate();
 		
 		while (flag3) {
+			Toys t;
 			switch (appMenu.promptType()) {
 			case "boardgame":
 				
@@ -245,8 +262,9 @@ public class AppController {
 				
 			case "figure":
 				boolean flag = true;
+				String classification = null;
 				while (flag ) {
-					String classification = appMenu.promptClassification();
+					classification = appMenu.promptClassification();
 					switch (classification) {
 					case "a":
 					case "d":
@@ -257,19 +275,21 @@ public class AppController {
 					default:
 						appMenu.showInvalidChoice();
 					}
-					
+				}
+				
 				t = new Figures(serialNumber, name, brand, price, availableCount, 
 						appropriateAge, "figure", classification);
 				toyInventory.add(t);
-				}
+				
 				flag3 = false;
 				break;
 				
 			case "animal":
 				boolean flag1 = true;
 				String material = appMenu.promptMaterial();
+				String size = null;
 				while (flag1) {				
-					String size = appMenu.promptSize();
+					size = appMenu.promptSize();
 					switch (size) {
 					case "s":
 					case "m":
@@ -280,19 +300,19 @@ public class AppController {
 					default:
 						appMenu.showInvalidChoice();
 					}
-				
-				
+				}
 				t = new Animals(serialNumber, name, brand, price, availableCount, 
 						appropriateAge, "animal", material, size);
 				toyInventory.add(t);
-				}
+				
 				flag3 = false;
 				break;
 				
 			case "puzzle":
 				boolean flag2 = true;
+				String puzzleType = null;
 				while (flag2) {		
-					String puzzleType = appMenu.promptPuzzleType();
+					puzzleType = appMenu.promptPuzzleType();
 					switch (puzzleType) {
 					case "m":
 					case "c":
@@ -305,11 +325,11 @@ public class AppController {
 					default:
 						appMenu.showInvalidChoice();
 					}
-				
+				}
 				t = new Puzzles(serialNumber, name, brand, price, availableCount, 
 						appropriateAge, "puzzle", puzzleType);
 				toyInventory.add(t);
-				}
+				
 				flag3 = false;
 				break;
 			default:

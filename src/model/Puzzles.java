@@ -53,7 +53,7 @@ public class Puzzles extends Toys {
 	 */
 	@Override
 	public String format() {
-			return ";" + getPuzzleType() + "\n";		
+			return super.format() + ";" + getPuzzleType() + "\n";		
 	}
 
 }

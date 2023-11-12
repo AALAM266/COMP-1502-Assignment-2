@@ -1,6 +1,11 @@
 package model;
 
-
+/**
+ * This abstract class represents a toy object. It contains the serial number, name, brand, price, availability count, appropriate age range, and type of toy.
+ * It also will encapsulate the attributes into one string then properly format it.
+ * @authors Akheel Alam Eddin and Keegan Hong
+ * @version 1.0
+ */
 public abstract class Toys {
 	
 	private String serialNumber;
@@ -13,13 +18,13 @@ public abstract class Toys {
 
 	/**
 	 * Constructor for the Toys class
-	 * @param serialNumber serial number of the toy
+	 * @param serialNumber serial number of the toy (unique, 10 digits)
 	 * @param name name of the toy
 	 * @param brand brand of the toy
 	 * @param price price of the toy
-	 * @param availabityCount availability count of the toy
-	 * @param ageAppropriate appropriate age range of the toy
-	 * @param toyType type of toy
+	 * @param availabityCount how many toys are available in inventory
+	 * @param ageAppropriate appropriate age range for the toy
+	 * @param toyType type of toy (Puzzle, Board Game, Figure, or Animal)
 	 */
 	public Toys(String serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate, String toyType) {
 		this.serialNumber = serialNumber;

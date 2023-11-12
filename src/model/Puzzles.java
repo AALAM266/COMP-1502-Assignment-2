@@ -1,19 +1,24 @@
 package model;
 
+/**
+ * This subclass represents a puzzle object. It contains the basic toy attributes and puzzle type.
+ * @authors Akheel Alam Eddin and Keegan Hong
+ * @version 1.0
+ */
 public class Puzzles extends Toys {
 
     private String puzzleType;
 
 	/**
 	 * Constructor for the Puzzles class
-	 * @param serialNumber serial number of the toy
-	 * @param name name of the toy
-	 * @param brand brand of the toy
-	 * @param price price of the toy
-	 * @param availabityCount availability count of the toy
-	 * @param ageAppropriate appropriate age range of the toy
-	 * @param toyType type of toy
-	 * @param puzzleType type of puzzle
+	 * @param serialNumber serial number of the puzzle toy (unique, 10 digits that starts with either 4, 5, or 6)
+	 * @param name name of the puzzle toy
+	 * @param brand brand of the puzzle toy
+	 * @param price price of the puzzle toy
+	 * @param availabityCount how many puzzle toys are available in inventory
+	 * @param ageAppropriate appropriate age range for the puzzle toy
+	 * @param toyType puzzle
+	 * @param puzzleType type of puzzle (Mechanical (m), Cryptic (c), Logic (l), Trivia (t), or Riddle (r))
 	 */
 	public Puzzles(String serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate,
 			String toyType, String puzzleType) {
@@ -23,7 +28,7 @@ public class Puzzles extends Toys {
 
 	/**
 	 * Getter method for the puzzle type
-	 * @return the puzzle type
+	 * @return the puzzle type (Mechanical (m), Cryptic (c), Logic (l), Trivia (t), or Riddle (r))
 	 */
 	public String getPuzzleType() {
 		return puzzleType;
@@ -40,7 +45,7 @@ public class Puzzles extends Toys {
 
 	/**
  	* This method will return string representation of the object.
- 	* @return a string representation of the object, including the puzzle type
+ 	* @return a string representation of the object, including the puzzle type (Mechanical (m), Cryptic (c), Logic (l), Trivia (t), or Riddle (r))
  	*/
 	@Override
     public String toString() {
@@ -48,7 +53,7 @@ public class Puzzles extends Toys {
     }
     
     /**
-	 * Returns a formatted string representation of the puzzle's type
+	 * This method will return a formatted string representation of the puzzle's type
 	 * @return formatted string representation of the puzzle's type
 	 */
 	@Override

@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * This subclass represents an animal toy object. It contains the basic toy attributes, material, and size of the animal toy
+ * @authors Akheel Alam Eddin and Keegan Hong
+ * @version 1.0
+ */
 public class Animals extends Toys {
 
     private String material;
@@ -7,15 +12,15 @@ public class Animals extends Toys {
     
 	/**
 	 * Constructor for the Animals class
-	 * @param serialNumber serial number of the toy
-	 * @param name name of the toy
-	 * @param brand brand of the toy
-	 * @param price price of the toy
-	 * @param availabityCount availability count of the toy
-	 * @param ageAppropriate appropriate age range of the toy
-	 * @param toyType type of toy
-	 * @param material material of the animal toy
-	 * @param size size of the animal toy
+	 * @param serialNumber serial number of the animal toy (unique, 10 digits that starts with either 2, or 3)
+	 * @param name name of the animal toy
+	 * @param brand brand of the animal toy
+	 * @param price price of the animal toy
+	 * @param availabityCount how many animal toys are available in inventory
+	 * @param ageAppropriate appropriate age range for the animal toy
+	 * @param toyType animal
+	 * @param material material of the animal toy 
+	 * @param size size of the animal toy (Small (s), Medium (m), or Large (l))
 	 */
 	public Animals(String serialNumber, String name, String brand, double price, int availabityCount, int ageAppropriate,
 			String toyType, String material, String size) {
@@ -42,7 +47,7 @@ public class Animals extends Toys {
 
 	/**
 	 * Getter method for the animal size
-	 * @return the animal size
+	 * @return the animal size (Small (s), Medium (m), or Large (l))
 	 */
 	public String getSize() {
 		return size;
@@ -57,8 +62,8 @@ public class Animals extends Toys {
 	}
 	
 	/**
- 	* This method will return string representation of the object.
- 	* @return a string representation of the object, including the animal material and size
+ 	* This method will return string representation of the animal object.
+ 	* @return a string representation of the animal object, including the material and size
  	*/
 	@Override
 	public String toString() {
@@ -67,7 +72,7 @@ public class Animals extends Toys {
 
 	
 	/**
-	 * Returns a formatted string representation of the animal's material and size.
+	 * This method will return a formatted string representation of the animal's material and size.
 	 * @return formatted string representation of the animal's material and size
 	 */
 	@Override

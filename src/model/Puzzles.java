@@ -42,14 +42,16 @@ public class Puzzles extends Toys {
  	* This method will return string representation of the object.
  	* @return a string representation of the object, including the puzzle type
  	*/
+	@Override
     public String toString() {
     	return super.toString() + ", Puzzle Type: " + getPuzzleType();
     }
     
     /**
-	 * This method will format the player's name, balance and number of wins
-	 * @return a properly formatted string
+	 * Returns a formatted string representation of the puzzle's type
+	 * @return formatted string representation of the puzzle's type
 	 */
+	@Override
 	public String format() {
 			return ";" + getPuzzleType();	
 	}

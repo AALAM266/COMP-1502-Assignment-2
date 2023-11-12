@@ -79,6 +79,7 @@ public class BoardGames extends Toys {
  	* This method will return string representation of the object.
  	* @return a string representation of the object, including the minimum and maximum number of players as well as the designer(s)
  	*/
+	@Override
 	public String toString() {
     	return super.toString() + ", Number of Players: " + getMinPlayers() + "-" + getMaxPlayers() + ", Designer(s): " + getDesigners();
     }
@@ -86,8 +87,9 @@ public class BoardGames extends Toys {
 
 	/**
 	 * Returns a formatted string representation of the board game's minimum and maximum number of players and designers.
-	 * @return string representation of the board game's minimum and maximum number of players and designers
+	 * @return formatted string representation of the board game's minimum and maximum number of players and designers
 	 */
+	@Override
 	public String format() {
 			return ";" + getMinPlayers() + ";" + getMaxPlayers() + ";" + getDesigners();		
 	}

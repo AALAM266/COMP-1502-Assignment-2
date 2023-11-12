@@ -60,6 +60,7 @@ public class Animals extends Toys {
  	* This method will return string representation of the object.
  	* @return a string representation of the object, including the animal material and size
  	*/
+	@Override
 	public String toString() {
     	return super.toString() + ", Material: " + getMaterial() + ", Size: " + getSize();
     }
@@ -67,8 +68,9 @@ public class Animals extends Toys {
 	
 	/**
 	 * Returns a formatted string representation of the animal's material and size.
-	 * @return string representation of the animal's material and size
+	 * @return formatted string representation of the animal's material and size
 	 */
+	@Override
 	public String format() {
 			return ";" + getMaterial() + ";" + getSize();		
 	}

@@ -41,8 +41,18 @@ public class Figures extends Toys {
  	* This method will return string representation of the object.
  	* @return a string representation of the object, including the figure classification
  	*/
+	@Override
 	public String toString() {
     	return super.toString() + ", Classification: " + getClassification();
     }
+
+	 /**
+	 * Returns a formatted string representation of the figure's classification
+	 * @return formatted string representation of the figure's classification
+	 */
+	@Override
+	public String format() {
+		return ";" + getClassification();
+	}
 
 }

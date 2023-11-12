@@ -348,7 +348,8 @@ public class AppController {
 	 */
 	private void removeToy() {
 		String serialNumber = appMenu.promptSN();
-		
+		boolean toyRemoval = false;
+		Toys t1 = null;
 		for (Toys t : toyInventory) {
 			if (serialNumber.equals(t.getSerialNumber())) {
 					
@@ -361,8 +362,9 @@ public class AppController {
 					switch (option) {
 
 					case 'y':
-
-						toyInventory.remove(t);
+						
+						t1 = t;
+						toyRemoval = true;
 						appMenu.showRemoveToySuccess();
 						appMenu.promptPressEnter();
 						
@@ -380,6 +382,11 @@ public class AppController {
 					}
 				}		
 			}	
+		}
+		
+		
+		if (toyRemoval == true) {
+			toyInventory.remove(t1);
 		}
 	}
 

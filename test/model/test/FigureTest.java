@@ -19,7 +19,7 @@ class FigureTest {
     @Test
     public void testConstructorAndToStringMethod() {
 
-        Figures figure = new Figures("1024162826", "japanese traditional dolls", "game demon", 139.99, 12, 7, "h");
+        Figures figure = new Figures("1024162826", "japanese traditional dolls", "game demon", 139.99, 12, 7, "Figure", "h");
 
         assertEquals("1024162826", figure.getSerialNumber());
         assertEquals("japanese traditional dolls", figure.getName());

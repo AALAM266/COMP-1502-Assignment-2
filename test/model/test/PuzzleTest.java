@@ -19,7 +19,7 @@ class PuzzleTest {
     @Test
     public void testConstructorAndToStringMethod() {
 
-        Puzzles puzzle = new Puzzles("5726898779", "pocket cube", "game orc", 42.83, 1, 4, "m", "m");
+        Puzzles puzzle = new Puzzles("5726898779", "pocket cube", "game orc", 42.83, 1, 4, "Puzzle", "m");
 
         
         assertEquals("5726898779", puzzle.getSerialNumber());

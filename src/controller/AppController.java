@@ -360,10 +360,11 @@ public class AppController {
 					Puzzles p = (Puzzles) t; 
 					fw.write(t.format() + p.format());
 				}
-			}		
+			}	
+		appMenu.showSavingMsg();
 	} catch (IOException e) {
 		e.printStackTrace();
-		appMenu.showSavingMsg();
+		
 	}
 
 	}

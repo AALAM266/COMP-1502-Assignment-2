@@ -463,9 +463,10 @@ private Scanner input; // Scanner object to get the user input
 	public String promptSN() {
 		System.out.print("Enter Serial Number (SN): ");
 		String serialNumber = "0";
+		Long serialNumber1;
 		
-		if (input.hasNextInt()) {
-			serialNumber = input.nextLine().trim().toLowerCase();
+		if (input.hasNextLong()) {
+			serialNumber1 = Long.parseLong(input.nextLine().trim().toLowerCase());
 		} else {
 			System.out.println();
 			System.out.println("Serial Number should only contain digits! Try again.");
@@ -474,12 +475,13 @@ private Scanner input; // Scanner object to get the user input
 			return promptSN();  
 		}
 		
-		if (serialNumber.length() != 10) {
+		if (String.valueOf(serialNumber1).length() != 10) {
 			System.out.println();
 			System.out.println("The Serial Number's length MUST Be 10 Digits! Try again.");
 			System.out.println();
 			return promptSN();  
 		}
+		serialNumber = String.valueOf(serialNumber1);
 		System.out.println();
 		return serialNumber;
 	}

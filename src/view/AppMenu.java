@@ -380,10 +380,39 @@ private Scanner input; // Scanner object to get the user input
 	}
 		
 	public int showSearchResultsP3(int n) {
+		int mainChoice = -1;
 		System.out.println("\t(" + n + ") Back to Main Menu");
 		System.out.println();
-		System.out.print("Enter option number to purchase: ");
-		int mainChoice = input.nextInt();
+		
+		while (true) {
+			System.out.print("Enter option number to purchase: ");
+			if (input.hasNextInt()) {
+				mainChoice = input.nextInt();
+				input.nextLine();  
+			} else {
+				System.out.println();
+				System.out.println("Not an Integer Number! Try again.");
+				System.out.println();
+				input.nextLine();  
+				continue;  
+			}
+			
+			if (mainChoice <= 0) {
+				System.out.println();
+				System.out.println("Choice Cannot Be Negative or Zero! Try Again.");
+				System.out.println();
+				continue;  
+			} 
+			
+			if (mainChoice > n) {
+				System.out.println();
+				System.out.println("Choice Out of Range! Try Again.");
+				System.out.println(); 
+				continue;  
+			} else {
+				break;
+			}
+		}
 		System.out.println();
 		return mainChoice;
 	}

@@ -346,24 +346,25 @@ public class AppController {
 	 * @throws Exception
 	 */
 	private void save() { // Save data into the txt file when the user chooses the save and exit option
-		try(FileWriter fw = new FileWriter(FILENAME, true)) {
+		try(FileWriter fw = new FileWriter(FILENAME, false)) {
 
 			for (Toys t : toyInventory) {
+				
 				if (t.getToyType().toLowerCase().equals("boardgame")) {
 					BoardGames b = (BoardGames) t; 
-					fw.write(t.format() + b.format());
+					fw.write(b.format());
 				}
 				else if (t.getToyType().toLowerCase().equals("figure")) {
 					Figures f = (Figures) t; 
-					fw.write(t.format() + f.format());
+					fw.write(f.format());
 				}
 				else if (t.getToyType().toLowerCase().equals("animal")) {
 					Animals a = (Animals) t; 
-					fw.write(t.format() + a.format());
+					fw.write(a.format());
 				}
 				else {
 					Puzzles p = (Puzzles) t; 
-					fw.write(t.format() + p.format());
+					fw.write(p.format());
 				}
 			}	
 		appMenu.showSavingMsg();

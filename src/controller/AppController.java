@@ -351,19 +351,19 @@ public class AppController {
 			for (Toys t : toyInventory) {
 				if (t.getToyType().toLowerCase().equals("boardgame")) {
 					BoardGames b = (BoardGames) t; 
-					fw.write(t.format1() + b.format());
+					fw.write(t.format() + b.format());
 				}
 				else if (t.getToyType().toLowerCase().equals("figure")) {
 					Figures f = (Figures) t; 
-					fw.write(t.format1() + f.format());
+					fw.write(t.format() + f.format());
 				}
 				else if (t.getToyType().toLowerCase().equals("animal")) {
 					Animals a = (Animals) t; 
-					fw.write(t.format1() + a.format());
+					fw.write(t.format() + a.format());
 				}
 				else {
 					Puzzles p = (Puzzles) t; 
-					fw.write(t.format1() + p.format());
+					fw.write(t.format() + p.format());
 				}
 			}	
 		appMenu.showSavingMsg();

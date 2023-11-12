@@ -393,7 +393,8 @@ public class AppController {
 				currentLine = fileReader.nextLine();
 				splittedLine = currentLine.split(";");
 				
-				if (splittedLine[6].length() == 1) {
+				if (splittedLine[6].length() == 1 && splittedLine[6].toLowerCase().charAt(0) != 'a' 
+						&& splittedLine[6].toLowerCase().charAt(0) != 'd' && splittedLine[6].toLowerCase().charAt(0) != 'h') {
 					switch (splittedLine[6].toLowerCase().charAt(0)) {
 					case 'm':
 					case 'c':

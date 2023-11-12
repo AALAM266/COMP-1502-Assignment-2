@@ -81,7 +81,7 @@ public class AppController {
 				String serialNumber = appMenu.promptSN();
 				
 				for (Toys t : toyInventory) {
-					if (serialNumber == t.getSerialNumber()) {
+					if (serialNumber.equals(t.getSerialNumber())) {
 						appMenu.showSearchResultsP1(t, n);
 						n += 1;
 					}
@@ -95,8 +95,9 @@ public class AppController {
 			case 2:
 				String name = appMenu.promptToyName();
 				
+				System.out.println("Number of toys in inventory: " + toyInventory.size());
 				for (Toys t : toyInventory) {
-					if (name == t.getName()) {
+					if (name.equals(t.getName())) {
 						appMenu.showSearchResultsP1(t, n);
 						n += 1;
 					}
@@ -122,7 +123,7 @@ public class AppController {
 					}
 
 				for (Toys t : toyInventory) {
-					if (type == t.getToyType()) {
+					if (type.equals(t.getToyType())) {
 						appMenu.showSearchResultsP1(t, n);
 						n += 1;
 					}

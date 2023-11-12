@@ -515,6 +515,7 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the user's choice (Y/N)
 	 */
 	public char promptRemoveToyAgain() {
+		System.out.print("Do you want to remove it (Y/N)? ");
 		char removeChoice = input.nextLine().toLowerCase().charAt(0);
 		System.out.println();
 		return removeChoice;	
@@ -634,6 +635,14 @@ private Scanner input; // Scanner object to get the user input
 		}
 		System.out.println();
 		return size;
+	}
+
+	/**
+	 * Informs the user that they entered a missing serial number
+	 */
+	public void showSerialNumberNotFound() {
+		System.out.println("No Matches Found! Try Again.");
+		System.out.println();
 	}
 
 }

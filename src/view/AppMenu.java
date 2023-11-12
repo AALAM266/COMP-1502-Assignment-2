@@ -369,14 +369,18 @@ private Scanner input; // Scanner object to get the user input
 		return designers;
 	}
 	
-	
-	public void showSearchResultsP1(Toys t, int n) { // Shows the search results to the user
+	public void showSearchResultsP1(ArrayList<Toys> toyInventory) { // Shows the search results to the user
+		System.out.println("Number of toys in inventory: " + toyInventory.size());
+		System.out.println();
 		System.out.println("Here are the search results:");
 		System.out.println();
+	}
+		
+	public void showSearchResultsP2(Toys t, int n) { // Shows the search results to the user
 		System.out.println("\t(" + n + ") " + t);
 	}
 		
-	public int showSearchResultsP2(int n) {
+	public int showSearchResultsP3(int n) {
 		System.out.println("\t(" + n + ") Back to Main Menu");
 		System.out.println();
 		System.out.print("Enter option number to purchase: ");

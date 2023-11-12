@@ -68,8 +68,11 @@ public class AppController {
 	private void searchAndPurchase() {
 		
 		boolean flag = true;
+		boolean flag2 = true;
+		int choice = -1;
 		int option;
-
+		ArrayList<Toys> toySearchResults = new ArrayList<>();
+		
 		while (flag) {
 			appMenu.showSearchMenu();
 			option = appMenu.enterOption();
@@ -79,32 +82,65 @@ public class AppController {
 
 			case 1:
 				String serialNumber = appMenu.promptSN();
-
-				System.out.println("Number of toys in inventory: " + toyInventory.size());
+				
+				appMenu.showSearchResultsP1(toyInventory);
 				for (Toys t : toyInventory) {
 					if (serialNumber.equalsIgnoreCase(t.getSerialNumber())) {
-						appMenu.showSearchResultsP1(t, n);
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
 						n += 1;
-					}
-					
-					
+					}				
 				}
 				
-				appMenu.showSearchResultsP2(n);
+				while (flag2) {
+					choice = appMenu.showSearchResultsP3(n);
+					
+					if (choice == n) {
+						flag2 = false;
+						break;
+					}
+					
+					else if (choice > n || choice < 1) {
+						appMenu.showInvalidChoice();
+					}
+					
+					else {
+						toySearchResults.remove(choice - 1);
+					}
+					
+				}
+			
 				break;
 				
 			case 2:
 				String name = appMenu.promptToyName();
 				
-				System.out.println("Number of toys in inventory: " + toyInventory.size());
+				appMenu.showSearchResultsP1(toyInventory);
 				for (Toys t : toyInventory) {
 					if (name.equalsIgnoreCase(t.getName())) {
-						appMenu.showSearchResultsP1(t, n);
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
 						n += 1;
 					}
 				}
 				
-				appMenu.showSearchResultsP2(n);
+				while (flag2) {
+					choice = appMenu.showSearchResultsP3(n);
+					
+					if (choice == n) {
+						flag2 = false;
+						break;
+					}
+					
+					else if (choice > n || choice < 1) {
+						appMenu.showInvalidChoice();
+					}
+					
+					else {
+						toySearchResults.remove(choice - 1);
+					}
+					
+				}
 				break;
 				
 			case 3:
@@ -123,15 +159,33 @@ public class AppController {
 						appMenu.showInvalidChoice();
 					}
 					
-				System.out.println("Number of toys in inventory: " + toyInventory.size());
+				appMenu.showSearchResultsP1(toyInventory);
 				for (Toys t : toyInventory) {
 					if (type.equalsIgnoreCase(t.getToyType())) {
-						appMenu.showSearchResultsP1(t, n);
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
 						n += 1;
 					}
 				}
 				}
-				appMenu.showSearchResultsP2(n);
+				
+				while (flag2) {
+					choice = appMenu.showSearchResultsP3(n);
+					
+					if (choice == n) {
+						flag2 = false;
+						break;
+					}
+					
+					else if (choice > n || choice < 1) {
+						appMenu.showInvalidChoice();
+					}
+					
+					else {
+						toySearchResults.remove(choice - 1);
+					}
+					
+				}
 				break;
 				
 			case 4:

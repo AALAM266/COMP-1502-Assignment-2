@@ -6,23 +6,32 @@ import org.junit.jupiter.api.Test;
 
 import model.Puzzles;
 
+/**
+ * This JUnit test class tests the constructor and toString method of the Puzzles class
+ * @authors Akheel Alam Eddin and Keegan Hong
+ * @version 1.0
+ */
 class PuzzleTest {
 	
+    /**
+     * This method tests the constructor and toString method of the Puzzles class
+     */
     @Test
     public void testConstructorAndToStringMethod() {
-        Puzzles puzzle = new Puzzles("5239019250", "Nob Yoshigahara Puzzle", "Game Zombie", 67.20, 5, 3, "M", null);
 
-        assertEquals("5239019250", puzzle.getSerialNumber());
-        assertEquals("Nob Yoshigahara Puzzle", puzzle.getName());
-        assertEquals("Game Zombie", puzzle.getBrand());
-        assertEquals(67.20, puzzle.getPrice());
-        assertEquals(5, puzzle.getAvailabityCount());
-        assertEquals(3, puzzle.getAppropriateAge());
-        assertEquals("M", puzzle.getToyType());
-        assertNull(puzzle.getPuzzleType());
+        Puzzles puzzle = new Puzzles("5726898779", "pocket cube", "game orc", 42.83, 1, 4, "m", "m");
 
-        // this is temporary until we figure out how we actually wanna display things
-        String expectedToString = "Category: M, Serial Number: 5239019250, Name: Nob Yoshigahara Puzzle, Brand: Game Zombie, Price: 67.2, Available Count: 5, Age Appropriate: 3, Puzzle Type: null";
+        
+        assertEquals("5726898779", puzzle.getSerialNumber());
+        assertEquals("pocket cube", puzzle.getName());
+        assertEquals("game orc", puzzle.getBrand());
+        assertEquals(42.83, puzzle.getPrice()); 
+        assertEquals(1, puzzle.getAvailabityCount());
+        assertEquals(4, puzzle.getAppropriateAge());
+        assertEquals("m", puzzle.getPuzzleType());
+
+
+        String expectedToString = "Category: Puzzle, Serial Number: 5726898779, Name: pocket cube, Brand: game orc, Price: 42.83, Available Count: 1, Age Appropriate: 4, Puzzle Type: m";
         assertEquals(expectedToString, puzzle.toString());
     }
 }

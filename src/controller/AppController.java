@@ -378,7 +378,6 @@ public class AppController {
 						invalidInput = true;
 						appMenu.showInvalidChoice();
 						option = appMenu.promptRemoveToyAgain();
-
 					}
 				}		
 			}	
@@ -387,6 +386,10 @@ public class AppController {
 		
 		if (toyRemoval == true) {
 			toyInventory.remove(t1);
+		}
+		else {
+			appMenu.showSerialNumberNotFound();
+			removeToy();
 		}
 	}
 

@@ -449,8 +449,14 @@ public class AppController {
 				appMenu.showInvalidChoice();
 			}
 		}
+
 		Double price = appMenu.promptToyPriceMin();
 		Double price2 = appMenu.promptToyPriceMax(price);
+		while(price > price2) {
+			appMenu.showGiftPriceError();
+			price = appMenu.promptToyPriceMin();
+			price2 = appMenu.promptToyPriceMax(price);
+		}
 		
 		if (price != -1 || price2 != -1) {
 			giftCounter += 1;

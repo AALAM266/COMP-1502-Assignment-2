@@ -204,7 +204,7 @@ private Scanner input; // Scanner object to get the user input
 	 */
 	public String promptGiftType() { 
 		String type;
-		System.out.print("Enter Toy Type: ");
+		System.out.print("Enter Toy Type, Or Hit ENTER To Skip: ");
 		type = input.nextLine().trim().toLowerCase();
 		System.out.println();
 		return type;
@@ -265,39 +265,36 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the minimum price of the toy when adding a toy
-	 * @return the price of the toy (with two decimal places (double))
+	 * Prompts the user for the minimum price of the toy when looking for gift suggestions
+	 * @return the price of the toy (displayed as a range of (price-price2))
 	 */
 	public double promptToyPriceMin() { 
 		double price = -1;
 		String choice;
 		while (true) {
 			
-			System.out.print("Enter Minimum Toy Price: ");
+			System.out.print("Enter Minimum Toy Price, Or Hit ENTER To Skip: ");
 			choice = input.nextLine();
-			if (choice == "") {
+			if (choice.isEmpty()) {
 				System.out.println();
 				return price;
 			}
 			else {
-				if (input.hasNextDouble()) {
-					price = input.nextDouble();
-					input.nextLine();  
-				} else {
+				try {
+					price = Integer.parseInt(choice);
+					if (price < 0) {
+						System.out.println();
+						System.out.println("Minimum Price Cannot Be Negative! Try Again.");
+						System.out.println();
+						continue;  
+					} else {
+						break;
+					}
+				} catch (NumberFormatException e) {
 					System.out.println();
 					System.out.println("Not an Integer Number! Try again.");
 					System.out.println();
-					input.nextLine();  
 					continue;  
-				}
-				
-				if (price < 0) {
-					System.out.println();
-					System.out.println("Price Cannot Be Negative! Try Again.");
-					System.out.println();
-					continue;  
-				} else {
-					break;
 				}
 		}
 		}
@@ -306,46 +303,36 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the maximum price of the toy when adding a toy
-	 * @param minimum price
-	 * @return the price of the toy (with two decimal places (double))
+	 * Prompts the user for the maximum price of the toy when looking for gift suggestions
+	 * @param price the minimum price of the toy
+	 * @return the maximum price of the toy (displayed as a range of (price-price2))
 	 */
 	public double promptToyPriceMax(Double price) { 
 		double price2 = -1;
 		String choice;
 		while (true) {
-			System.out.print("Enter Maximum Toy Price: ");
+			System.out.print("Enter Maximum Toy Price, Or Hit ENTER To Skip: ");
 			choice = input.nextLine();
-			if (choice == "") {
+			if (choice.isEmpty()) {
 				System.out.println();
-				return price;
+				return price2;
 			}
 			else {
-				if (input.hasNextDouble()) {
-					price2 = input.nextDouble();
-					input.nextLine();  
-				} else {
+				try {
+					price2 = Integer.parseInt(choice);
+					if (price2 < 0) {
+						System.out.println();
+						System.out.println("Maximum Price Cannot Be Negative! Try Again.");
+						System.out.println();
+						continue;  
+					} else {
+						break;
+					}
+				} catch (NumberFormatException e) {
 					System.out.println();
 					System.out.println("Not an Integer Number! Try again.");
 					System.out.println();
-					input.nextLine();  
 					continue;  
-				}
-				
-				if (price2 < 0) {
-					System.out.println();
-					System.out.println("Price Cannot Be Negative! Try Again.");
-					System.out.println();
-					continue;  
-				}
-				
-				if (price2 < price) {
-					System.out.println();
-					System.out.println("Max Price Cannot Be Lower Than Other Price! Try Again.");
-					System.out.println();
-					continue;  
-				} else {
-					break;
 				}
 		}
 		}
@@ -418,14 +405,14 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the age rating when adding a toy
+	 * Prompts the user for the age rating when looking for gift suggestions
 	 * @return the age rating for the toy
 	 */
 	public int promptGiftAgeAppropriate() {
 		int appropriateAge = -1;
 		String choice;
 		while (true) {
-			System.out.print("Enter Appropriate Age: ");
+			System.out.print("Enter Appropriate Age, Or Hit ENTER To Skip: ");
 			choice = input.nextLine();
 			if (choice.isEmpty()) {
 				System.out.println();
@@ -844,6 +831,12 @@ private Scanner input; // Scanner object to get the user input
 		System.out.println("All 3 Fields Cannot Be Blank! Try Again.");
 		System.out.println();
 		
+	}
+
+	public void showGiftPriceError() {
+		System.out.println("Minimum price cannot be greater than the maximum price!");
+		System.out.println("Please enter the values again: ");
+		System.out.println();
 	}
 
 }

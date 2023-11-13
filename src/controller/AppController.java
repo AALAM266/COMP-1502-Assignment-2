@@ -421,16 +421,12 @@ public class AppController {
 	private void makeGiftSuggestion() {
 		final double MAX_PRICE = 1000000;
 		int giftCounter = 0;
-		boolean appropriateAgeRecieved = false;
-		boolean toyTypeRecieved = false;
-		boolean priceRangeRecieved = false;
 		int n = 1;
 		int choice = -1;
 		String type = null;
 		int appropriateAge = appMenu.promptGiftAgeAppropriate();
 		if (appropriateAge != -1) {
 			giftCounter += 1;
-			appropriateAgeRecieved = true;
 		}
 		boolean flag1 = true;
 		boolean flag2 = true;
@@ -442,7 +438,6 @@ public class AppController {
 			case "figure":
 			case "puzzle":
 				giftCounter += 1;
-				toyTypeRecieved = true;
 				flag1 = false;
 				break;
 			
@@ -470,7 +465,6 @@ public class AppController {
 		
 		if (price != -1 || price2 != -1) {
 			giftCounter += 1;
-			priceRangeRecieved = true;
 		}
 		
 		if (giftCounter == 0) {
@@ -483,121 +477,23 @@ public class AppController {
 		appMenu.showSearchResultsP1(toyInventory);
 		for (Toys t : toyInventory) {
 			
-			if (appropriateAgeRecieved && (type.equalsIgnoreCase(t.getToyType()))) {
-				
-			}
-			
-			
-			
-			if ((type.equalsIgnoreCase(t.getToyType())) && (t.getPrice() >= price && t.getPrice() <= price2) 
-					&& (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1)) {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-			}
-				
-				
-		
-			
-			else if (appropriateAgeRecieved && toyTypeRecieved) {
-				if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
-					if (type.equalsIgnoreCase(t.getToyType())) {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-					}
-				}	
-			}
-			
-			if (type.equalsIgnoreCase(t.getToyType()) && appropriateAgeRecieved && priceRangeRecieved) {
+			if (type.equalsIgnoreCase(t.getToyType())) {
 				appMenu.showSearchResultsP2(t, n);
 				toySearchResults.add(t);
 				n += 1;
 			}
 			
-			
-			
-			
-			
-			if (type.equalsIgnoreCase(t.getToyType())) {
-				if (t.getPrice() >= price && t.getPrice() <= price2) {
-					 if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-					}
-					else {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-					}
-				}
-				else {
-					appMenu.showSearchResultsP2(t, n);
-					toySearchResults.add(t);
-					n += 1;
-				}
+			if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
+				appMenu.showSearchResultsP2(t, n);
+				toySearchResults.add(t);
+				n += 1;
 			}
-			else if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
-					if (t.getPrice() >= price && t.getPrice() <= price2) {
-						if (type.equalsIgnoreCase(t.getToyType())) {
-							appMenu.showSearchResultsP2(t, n);
-							toySearchResults.add(t);
-							n += 1;
-						}
-						else {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-						}
-					}
-					else {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-					}
-				}
 			
-			else if (t.getPrice() >= price && t.getPrice() <= price2) {
-					if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
-						if (type.equalsIgnoreCase(t.getToyType())) {
-							appMenu.showSearchResultsP2(t, n);
-							toySearchResults.add(t);
-							n += 1;
-							}
-							else {
-							appMenu.showSearchResultsP2(t, n);
-							toySearchResults.add(t);
-							n += 1;
-							}
-						}
-						else {
-							appMenu.showSearchResultsP2(t, n);
-							toySearchResults.add(t);
-							n += 1;
-						}
-					}	
-			
-			else if (t.getPrice() >= price && t.getPrice() <= price2) {
-				if (type.equalsIgnoreCase(t.getToyType())) {
-					if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-						}
-						else {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-						}
-					}
-					else {
-						appMenu.showSearchResultsP2(t, n);
-						toySearchResults.add(t);
-						n += 1;
-					}
-				}	
-			
+			if (t.getPrice() >= price && t.getPrice() <= price2) {
+				appMenu.showSearchResultsP2(t, n);
+				toySearchResults.add(t);
+				n += 1;
+			}
 		}	
 
 		while (flag2) {

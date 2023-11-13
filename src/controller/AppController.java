@@ -68,6 +68,9 @@ public class AppController {
 				removeToy();
 				break;
 			case 4:
+				makeGiftSuggestion();
+				break;
+			case 5:
 				save();
 				flag = false;
 				break;
@@ -77,7 +80,7 @@ public class AppController {
 		}
 
 	}
-    
+
 	/**
 	 * This method is called from the launchApplication method, it will search for toys based on the user input and allow the user to purchase them
 	 */
@@ -112,7 +115,6 @@ public class AppController {
 				if (!toyFound) {
 					appMenu.showSerialNumberNotFound();
 				}
-
 				
 				while (flag2) {
 					choice = appMenu.showSearchResultsP3(n);
@@ -141,8 +143,9 @@ public class AppController {
 				
 			case 2:
 				String name = appMenu.promptToyName();
-				toyFound = false;
+				
 				appMenu.showSearchResultsP1(toyInventory);
+				toyFound = false;
 				for (Toys t : toyInventory) {
 					if (name.equalsIgnoreCase(t.getName())) {
 						appMenu.showSearchResultsP2(t, n);
@@ -183,6 +186,7 @@ public class AppController {
 				
 			case 3:
 				boolean flag1 = true;
+				toyFound = false;
 				while (flag1) {		
 					String type = appMenu.promptType();
 					switch (type) {
@@ -197,7 +201,6 @@ public class AppController {
 						appMenu.showInvalidChoice();
 					}
 				
-				toyFound = false;
 				appMenu.showSearchResultsP1(toyInventory);
 				for (Toys t : toyInventory) {
 					if (type.equalsIgnoreCase(t.getToyType())) {
@@ -207,10 +210,9 @@ public class AppController {
 						toyFound = true;
 					}
 				}
-					if (!toyFound) {
-					appMenu.showToyTypeNotFound();
 				}
-
+				if (!toyFound) {
+					appMenu.showToyTypeNotFound();
 				}
 				
 				while (flag2) {
@@ -267,17 +269,15 @@ public class AppController {
 			switch (appMenu.promptType()) {
 			case "boardgame":
 				
-			
 				int minPlayers = appMenu.promptMinPlayers();
 				int maxPlayers = appMenu.promptMaxPlayers();
 				while (minPlayers > maxPlayers) {
-					System.out.println("Minimum number of players cannot be greater than the maximum number of players!");
-					System.out.println("Please enter the values again: ");
+					appMenu.showPlayerNumberError();
 					minPlayers = appMenu.promptMinPlayers();
 					maxPlayers = appMenu.promptMaxPlayers();
 				break;
 				}
-					
+				
 				String designers = appMenu.promptDesigners();
 				
 				t = new BoardGames(serialNumber, name, brand, price, availableCount, 
@@ -415,6 +415,156 @@ public class AppController {
 		else {
 			appMenu.showSerialNumberNotFound();
 			removeToy();
+		}
+	}
+	
+	private void makeGiftSuggestion() {
+		int giftCounter = 0;
+		int n = 1;
+		int choice = -1;
+		String type = null;
+		int appropriateAge = appMenu.promptGiftAgeAppropriate();
+		if (appropriateAge != -1) {
+			giftCounter += 1;
+		}
+		boolean flag1 = true;
+		boolean flag2 = true;
+		while (flag1) {		
+			type = appMenu.promptGiftType();
+			switch (type) {
+			case "boardgame":
+			case "animal":
+			case "figure":
+			case "puzzle":
+				giftCounter += 1;
+				flag1 = false;
+				break;
+			
+			case "":
+				flag1 = false;
+				break;
+
+			default:
+				
+				appMenu.showInvalidChoice();
+			}
+		}
+		Double price = appMenu.promptToyPriceMin();
+		Double price2 = appMenu.promptToyPriceMax(price);
+		
+		if (price != -1 || price2 != -1) {
+			giftCounter += 1;
+		}
+		
+		if (giftCounter < 3) {
+			appMenu.showInvalidChoice();
+			makeGiftSuggestion();
+		}
+		
+		appMenu.showSearchResultsP1(toyInventory);
+		ArrayList<Toys> toySearchResults = new ArrayList<>();
+		appMenu.showSearchResultsP1(toyInventory);
+		for (Toys t : toyInventory) {
+			if (type.equalsIgnoreCase(t.getToyType())) {
+				if (t.getPrice() >= price && t.getPrice() <= price2) {
+					 if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
+						n += 1;
+					}
+					else {
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
+						n += 1;
+					}
+				}
+				else {
+					appMenu.showSearchResultsP2(t, n);
+					toySearchResults.add(t);
+					n += 1;
+				}
+			}
+			else if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
+					if (t.getPrice() >= price && t.getPrice() <= price2) {
+						if (type.equalsIgnoreCase(t.getToyType())) {
+							appMenu.showSearchResultsP2(t, n);
+							toySearchResults.add(t);
+							n += 1;
+						}
+						else {
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
+						n += 1;
+						}
+					}
+					else {
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
+						n += 1;
+					}
+				}
+			
+			else if (t.getPrice() >= price && t.getPrice() <= price2) {
+					if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
+						if (type.equalsIgnoreCase(t.getToyType())) {
+							appMenu.showSearchResultsP2(t, n);
+							toySearchResults.add(t);
+							n += 1;
+							}
+							else {
+							appMenu.showSearchResultsP2(t, n);
+							toySearchResults.add(t);
+							n += 1;
+							}
+						}
+						else {
+							appMenu.showSearchResultsP2(t, n);
+							toySearchResults.add(t);
+							n += 1;
+						}
+					}	
+			
+			else if (t.getPrice() >= price && t.getPrice() <= price2) {
+				if (type.equalsIgnoreCase(t.getToyType())) {
+					if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
+						n += 1;
+						}
+						else {
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
+						n += 1;
+						}
+					}
+					else {
+						appMenu.showSearchResultsP2(t, n);
+						toySearchResults.add(t);
+						n += 1;
+					}
+				}	
+			
+		}	
+
+		while (flag2) {
+			choice = appMenu.showSearchResultsP3(n);
+			
+			if (choice == n) {
+				flag2 = false;
+				break;
+			}
+			
+			else if (choice > n || choice < 1) {
+				appMenu.showInvalidChoice();
+			}
+			
+			else {
+				toySearchResults.remove(choice - 1);
+				toyInventory.remove(choice);
+				appMenu.showTransactionSuccess();
+				appMenu.promptPressEnter();
+			}
+			
 		}
 	}
 

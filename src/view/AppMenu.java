@@ -199,7 +199,7 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
-	 * Prompts the user for the toy type for searching, purchasing, or adding purposes
+	 * Prompts the user for the toy type when looking for gift suggestions
 	 * @return the type of toy (puzzle, boardgame, figure, or animal)
 	 */
 	public String promptGiftType() { 
@@ -664,7 +664,7 @@ private Scanner input; // Scanner object to get the user input
 	
 
 	/**
-	 * Prompts the user to decide whether to remove another toy.
+	 * Prompts the user to decide whether to remove the toy.
 	 * @return the user's choice (Y/N)
 	 */
 	public char promptRemoveToyAgain() {
@@ -799,7 +799,7 @@ private Scanner input; // Scanner object to get the user input
 	}
 
 	/**
-	 * Informs the user that they entered an invalid number of min and max players
+	 * Informs the user that they entered a minimum player count that is greater than the maximum player count
 	 */
 	public void showPlayerNumberError() {
 		System.out.println("Minimum number of players cannot be greater than the maximum number of players!");
@@ -833,6 +833,9 @@ private Scanner input; // Scanner object to get the user input
 		
 	}
 
+	/**
+	 * Informs the user that they entered a minimum price that is greater than the maximum price
+	 */
 	public void showGiftPriceError() {
 		System.out.println("Minimum price cannot be greater than the maximum price!");
 		System.out.println("Please enter the values again: ");

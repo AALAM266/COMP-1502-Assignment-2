@@ -14,7 +14,7 @@ import view.AppMenu;
 
 /**
  * The AppController class is responsible for managing the application, it interacts with the user through the AppMenu.
- * It contains methods to add new toys, search for specific toys, and remove toys.
+ * It contains methods to add new toys, search for specific toys, remove toys, and a gift suggestion.
  * The main entry point of the application is the launchApplication() method, which
  * displays the main menu to the user and calls the appropriate methods based on the
  * user's choice.
@@ -369,7 +369,7 @@ public class AppController {
 	}
 	
 	/**
-	 * This method is called from the launchApplication method, it will prompt the user for the serial number of the toy they want to remove from the inventory
+	 * This method is called from the launchApplication method, it will prompt the user for the serial number of the toy they want to remove
 	 */
 	private void removeToy() {
 		String serialNumber = appMenu.promptSN();
@@ -418,6 +418,10 @@ public class AppController {
 		}
 	}
 	
+	/**
+	 * This method is called from the launchApplication method, it will prompt the user for either the age rating of the toy, or the type, or the price range
+	 * The information will then be used to recommend a gift for the user to buy
+	 */
 	private void makeGiftSuggestion() {
 		final double MAX_PRICE = 1000000;
 		int giftCounter = 0;

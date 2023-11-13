@@ -276,6 +276,7 @@ private Scanner input; // Scanner object to get the user input
 			System.out.print("Enter Minimum Toy Price: ");
 			choice = input.nextLine();
 			if (choice == "") {
+				System.out.println();
 				return price;
 			}
 			else {
@@ -316,6 +317,7 @@ private Scanner input; // Scanner object to get the user input
 			System.out.print("Enter Maximum Toy Price: ");
 			choice = input.nextLine();
 			if (choice == "") {
+				System.out.println();
 				return price;
 			}
 			else {
@@ -426,6 +428,7 @@ private Scanner input; // Scanner object to get the user input
 			System.out.print("Enter Appropriate Age: ");
 			choice = input.nextLine();
 			if (choice.isEmpty()) {
+				System.out.println();
 				return appropriateAge;
 			}
 			else {
@@ -832,6 +835,15 @@ private Scanner input; // Scanner object to get the user input
 	public void showToyTypeNotFound() {
 		System.out.println("No Matches Found! Try Again.");
 		System.out.println();
+	}
+
+	/**
+	 * Informs the user that they entered 3 blank inputs
+	 */
+	public void showRetryGiftSuggestion() {
+		System.out.println("All 3 Fields Cannot Be Blank! Try Again.");
+		System.out.println();
+		
 	}
 
 }

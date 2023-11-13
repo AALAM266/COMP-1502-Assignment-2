@@ -100,13 +100,19 @@ public class AppController {
 				String serialNumber = appMenu.promptSN();
 				
 				appMenu.showSearchResultsP1(toyInventory);
+				boolean toyFound = false;
 				for (Toys t : toyInventory) {
 					if (serialNumber.equalsIgnoreCase(t.getSerialNumber())) {
 						appMenu.showSearchResultsP2(t, n);
 						toySearchResults.add(t);
 						n += 1;
+						toyFound = true;
 					}				
 				}
+				if (!toyFound) {
+					appMenu.showSerialNumberNotFound();
+				}
+
 				
 				while (flag2) {
 					choice = appMenu.showSearchResultsP3(n);
@@ -135,14 +141,18 @@ public class AppController {
 				
 			case 2:
 				String name = appMenu.promptToyName();
-				
+				toyFound = false;
 				appMenu.showSearchResultsP1(toyInventory);
 				for (Toys t : toyInventory) {
 					if (name.equalsIgnoreCase(t.getName())) {
 						appMenu.showSearchResultsP2(t, n);
 						toySearchResults.add(t);
 						n += 1;
+						toyFound = true;
 					}
+				}
+				if (!toyFound) {
+					appMenu.showToyNameNotFound();
 				}
 				
 				while (flag2) {
@@ -186,15 +196,21 @@ public class AppController {
 					default:
 						appMenu.showInvalidChoice();
 					}
-					
+				
+				toyFound = false;
 				appMenu.showSearchResultsP1(toyInventory);
 				for (Toys t : toyInventory) {
 					if (type.equalsIgnoreCase(t.getToyType())) {
 						appMenu.showSearchResultsP2(t, n);
 						toySearchResults.add(t);
 						n += 1;
+						toyFound = true;
 					}
 				}
+					if (!toyFound) {
+					appMenu.showToyTypeNotFound();
+				}
+
 				}
 				
 				while (flag2) {

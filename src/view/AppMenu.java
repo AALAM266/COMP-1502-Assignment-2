@@ -645,4 +645,20 @@ private Scanner input; // Scanner object to get the user input
 		System.out.println();
 	}
 
+	/**
+	 * Informs the user that they entered a missing toy name
+	 */
+	public void showToyNameNotFound() {
+		System.out.println("No Matches Found! Try Again.");
+		System.out.println();
+	}
+
+	/**
+	 * Informs the user that they entered a missing toy type
+	 */
+	public void showToyTypeNotFound() {
+		System.out.println("No Matches Found! Try Again.");
+		System.out.println();
+	}
+
 }

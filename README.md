@@ -4,10 +4,9 @@ Toy Store Software
 **Contributions:**
 
 Keegan:  
-- Initial skeleton of Player, AppMenu, and GameManager
-- Formatted AppMenu and GameMenu
-- Completed GameManager 
-- Formatted PuntoBancoGame to print properly and improved functions
+- Initial skeleton of AppController
+- Formatted AppMenu
+- Completed various methods in AppController
 - Final testing and debugging
 
 

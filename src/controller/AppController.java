@@ -457,7 +457,7 @@ public class AppController {
 		}
 		
 		if (giftCounter < 3) {
-			appMenu.showInvalidChoice();
+			appMenu.showRetryGiftSuggestion();
 			makeGiftSuggestion();
 		}
 		

@@ -114,7 +114,14 @@ public abstract class Toys {
 	public void setAvailabityCount(int availabityCount) {
 		this.availabityCount = availabityCount;
 	}
-
+	
+	/**
+	 * Decreasing method for the toy availability count
+	 */
+	public void decreaseAvailableCount() {
+			availabityCount -= 1;
+		}
+	
 	/**
 	 * Getter method for the age range for the toy
 	 * @return the appropriate age range for the toy
@@ -166,6 +173,8 @@ public abstract class Toys {
 			return (getSerialNumber() + ";" + getName() + ";" + getBrand() + ";" + getPrice() + ";" + getAvailabityCount() + 
 					";" + getAppropriateAge());		
 	}
+
+	
 
 
 

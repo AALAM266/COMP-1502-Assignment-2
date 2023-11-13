@@ -425,34 +425,30 @@ private Scanner input; // Scanner object to get the user input
 		while (true) {
 			System.out.print("Enter Appropriate Age: ");
 			choice = input.nextLine();
-			if (choice == "") {
+			if (choice.isEmpty()) {
 				return appropriateAge;
 			}
 			else {
-			
-				if (input.hasNextInt()) {
-					appropriateAge = input.nextInt();
-					input.nextLine();  
-				} else {
+				try {
+					appropriateAge = Integer.parseInt(choice);
+					if (appropriateAge < 0) {
+						System.out.println();
+						System.out.println("Appropriate Age Cannot Be Negative! Try Again.");
+						System.out.println();
+						continue;  
+					} else {
+						break;
+					}
+				} catch (NumberFormatException e) {
 					System.out.println();
 					System.out.println("Not an Integer Number! Try again.");
 					System.out.println();
-					input.nextLine();  
 					continue;  
-				}
-				
-				if (appropriateAge < 0) {
-					System.out.println();
-					System.out.println("Appropriate Age Cannot Be Negative! Try Again.");
-					System.out.println();
-					continue;  
-				} else {
-					break;
 				}
 			}
 		}
-			System.out.println();
-			return appropriateAge;
+		System.out.println();
+		return appropriateAge;
 	}
 	
 	/**

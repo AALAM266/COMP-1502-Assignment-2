@@ -12,7 +12,8 @@ Keegan:
 
 Akheel:
 - Proper pathing and file structure to work with Github repo
-- Initial skeleton of model package
-- Algorithm pseudocode and implementation
-- Completed PuntoBancoGame class
+- Initial skeleton and completion of model package
+- Invalid input testing and implementation
+- Intermittent program tests
+- JUnit Tests
 - Javadoc and documentation

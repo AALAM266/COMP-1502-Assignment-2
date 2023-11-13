@@ -42,7 +42,8 @@ private Scanner input; // Scanner object to get the user input
 		System.out.println("\t(1) Search Inventory and Purchase Toy");
 		System.out.println("\t(2) Add New Toy");
 		System.out.println("\t(3) Remove Toy");
-		System.out.println("\t(4) Save & Exit");
+		System.out.println("\t(4) Make a Gift Suggestion");
+		System.out.println("\t(5) Save & Exit");
 		System.out.println();
 	}
 		
@@ -51,6 +52,34 @@ private Scanner input; // Scanner object to get the user input
 	 * @return the option chosen by the user
 	 */
 	public int enterOption() {
+		System.out.print("Enter Option: ");
+		int choice = -1;
+		if (input.hasNextInt()) {
+			choice = input.nextInt();
+			input.nextLine();  
+		} else {
+			System.out.println();
+			System.out.println("This is not an Integer Number! Try again.");
+			System.out.println();
+			input.nextLine();  
+			return enterOption();  
+		}
+		
+		if (choice < 0 || choice > 5) {
+			System.out.println();
+			System.out.println("This is not a valid option! Try again.");
+			System.out.println();
+			return enterOption(); 
+		}
+		System.out.println();
+		return choice;
+	}		
+	
+	/**
+	 * Prompts the user to choose an option from the search menu
+	 * @return the option chosen by the user
+	 */
+	public int enterOption2() {
 		System.out.print("Enter Option: ");
 		int choice = -1;
 		if (input.hasNextInt()) {
@@ -169,6 +198,17 @@ private Scanner input; // Scanner object to get the user input
 		return type;
 	}
 	
+	/**
+	 * Prompts the user for the toy type for searching, purchasing, or adding purposes
+	 * @return the type of toy (puzzle, boardgame, figure, or animal)
+	 */
+	public String promptGiftType() { 
+		String type;
+		System.out.print("Enter Toy Type: ");
+		type = input.nextLine().trim().toLowerCase();
+		System.out.println();
+		return type;
+	}
 	
 	/**
 	 * Prompts the user for the toy brand when adding a toy
@@ -225,6 +265,93 @@ private Scanner input; // Scanner object to get the user input
 	}
 	
 	/**
+	 * Prompts the user for the minimum price of the toy when adding a toy
+	 * @return the price of the toy (with two decimal places (double))
+	 */
+	public double promptToyPriceMin() { 
+		double price = -1;
+		String choice;
+		while (true) {
+			
+			System.out.print("Enter Minimum Toy Price: ");
+			choice = input.nextLine();
+			if (choice == "") {
+				return price;
+			}
+			else {
+				if (input.hasNextDouble()) {
+					price = input.nextDouble();
+					input.nextLine();  
+				} else {
+					System.out.println();
+					System.out.println("Not an Integer Number! Try again.");
+					System.out.println();
+					input.nextLine();  
+					continue;  
+				}
+				
+				if (price < 0) {
+					System.out.println();
+					System.out.println("Price Cannot Be Negative! Try Again.");
+					System.out.println();
+					continue;  
+				} else {
+					break;
+				}
+		}
+		}
+		System.out.println();
+		return price;
+	}
+	
+	/**
+	 * Prompts the user for the maximum price of the toy when adding a toy
+	 * @param minimum price
+	 * @return the price of the toy (with two decimal places (double))
+	 */
+	public double promptToyPriceMax(Double price) { 
+		double price2 = -1;
+		String choice;
+		while (true) {
+			System.out.print("Enter Maximum Toy Price: ");
+			choice = input.nextLine();
+			if (choice == "") {
+				return price;
+			}
+			else {
+				if (input.hasNextDouble()) {
+					price2 = input.nextDouble();
+					input.nextLine();  
+				} else {
+					System.out.println();
+					System.out.println("Not an Integer Number! Try again.");
+					System.out.println();
+					input.nextLine();  
+					continue;  
+				}
+				
+				if (price2 < 0) {
+					System.out.println();
+					System.out.println("Price Cannot Be Negative! Try Again.");
+					System.out.println();
+					continue;  
+				}
+				
+				if (price2 < price) {
+					System.out.println();
+					System.out.println("Max Price Cannot Be Lower Than Other Price! Try Again.");
+					System.out.println();
+					continue;  
+				} else {
+					break;
+				}
+		}
+		}
+		System.out.println();
+		return price2;
+	}
+	
+	/**
 	 * Prompts the user for the availability count when adding a toy
 	 * @return how many toys will be available in inventory
 	 */
@@ -275,9 +402,9 @@ private Scanner input; // Scanner object to get the user input
 				continue;  
 			}
 			
-			if (appropriateAge <= 0) {
+			if (appropriateAge < 0) {
 				System.out.println();
-				System.out.println("Appropriate Age Cannot Be Negative Or Zero! Try Again.");
+				System.out.println("Appropriate Age Cannot Be Negative! Try Again.");
 				System.out.println();
 				continue;  
 			} else {
@@ -286,6 +413,46 @@ private Scanner input; // Scanner object to get the user input
 		}
 		System.out.println();
 		return appropriateAge;
+	}
+	
+	/**
+	 * Prompts the user for the age rating when adding a toy
+	 * @return the age rating for the toy
+	 */
+	public int promptGiftAgeAppropriate() {
+		int appropriateAge = -1;
+		String choice;
+		while (true) {
+			System.out.print("Enter Appropriate Age: ");
+			choice = input.nextLine();
+			if (choice == "") {
+				return appropriateAge;
+			}
+			else {
+			
+				if (input.hasNextInt()) {
+					appropriateAge = input.nextInt();
+					input.nextLine();  
+				} else {
+					System.out.println();
+					System.out.println("Not an Integer Number! Try again.");
+					System.out.println();
+					input.nextLine();  
+					continue;  
+				}
+				
+				if (appropriateAge < 0) {
+					System.out.println();
+					System.out.println("Appropriate Age Cannot Be Negative! Try Again.");
+					System.out.println();
+					continue;  
+				} else {
+					break;
+				}
+			}
+		}
+			System.out.println();
+			return appropriateAge;
 	}
 	
 	/**
@@ -645,6 +812,16 @@ private Scanner input; // Scanner object to get the user input
 		System.out.println();
 	}
 
+	/**
+	 * Informs the user that they entered an invalid number of min and max players
+	 */
+	public void showPlayerNumberError() {
+		System.out.println("Minimum number of players cannot be greater than the maximum number of players!");
+		System.out.println("Please enter the values again: ");
+		System.out.println();
+		
+	}
+	
 	/**
 	 * Informs the user that they entered a missing toy name
 	 */

@@ -251,8 +251,17 @@ public class AppController {
 			switch (appMenu.promptType()) {
 			case "boardgame":
 				
+			
 				int minPlayers = appMenu.promptMinPlayers();
 				int maxPlayers = appMenu.promptMaxPlayers();
+				while (minPlayers > maxPlayers) {
+					System.out.println("Minimum number of players cannot be greater than the maximum number of players!");
+					System.out.println("Please enter the values again: ");
+					minPlayers = appMenu.promptMinPlayers();
+					maxPlayers = appMenu.promptMaxPlayers();
+				break;
+				}
+					
 				String designers = appMenu.promptDesigners();
 				
 				t = new BoardGames(serialNumber, name, brand, price, availableCount, 

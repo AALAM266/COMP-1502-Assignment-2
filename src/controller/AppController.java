@@ -107,11 +107,12 @@ public class AppController {
 				appMenu.showSearchResultsP1(toyInventory);
 				boolean toyFound = false;
 				for (Toys t : toyInventory) {
-					t1 = t;
+					
 					if (serialNumber.equalsIgnoreCase(t.getSerialNumber())) {
 						appMenu.showSearchResultsP2(t, n);
 						toySearchResults.add(t);
 						n += 1;
+						t1 = t;
 						toyFound = true;
 					}				
 				}
@@ -150,11 +151,12 @@ public class AppController {
 				appMenu.showSearchResultsP1(toyInventory);
 				toyFound = false;
 				for (Toys t : toyInventory) {
-					t1 = t;
+					
 					if (name.equalsIgnoreCase(t.getName())) {
 						appMenu.showSearchResultsP2(t, n);
 						toySearchResults.add(t);
 						n += 1;
+						t1 = t;
 						toyFound = true;
 					}
 				}
@@ -179,6 +181,7 @@ public class AppController {
 					
 					else if (choice < n && choice >= 1 && invalidCheck){
 						toySearchResults.remove(choice - 1);
+						
 						t1.decreaseAvailableCount();
 						appMenu.showTransactionSuccess();
 						appMenu.promptPressEnter();
@@ -207,10 +210,11 @@ public class AppController {
 				
 				appMenu.showSearchResultsP1(toyInventory);
 				for (Toys t : toyInventory) {
-					t1 = t;
+					
 					if (type.equalsIgnoreCase(t.getToyType())) {
 						appMenu.showSearchResultsP2(t, n);
 						toySearchResults.add(t);
+						t1 = t;
 						n += 1;
 						toyFound = true;
 					}
@@ -486,22 +490,25 @@ public class AppController {
 		appMenu.showSearchResultsP1(toyInventory);
 		Toys t1 = null;
 		for (Toys t : toyInventory) {
-			t1 = t;
+			
 			if (type.equalsIgnoreCase(t.getToyType())) {
 				appMenu.showSearchResultsP2(t, n);
 				toySearchResults.add(t);
+				t1 = t;
 				n += 1;
 			}
 			
 			if (t.getAppropriateAge() >= appropriateAge && appropriateAge != -1) {
 				appMenu.showSearchResultsP2(t, n);
 				toySearchResults.add(t);
+				t1 = t;
 				n += 1;
 			}
 			
 			if (t.getPrice() >= price && t.getPrice() <= price2) {
 				appMenu.showSearchResultsP2(t, n);
 				toySearchResults.add(t);
+				t1 = t;
 				n += 1;
 			}
 		}	

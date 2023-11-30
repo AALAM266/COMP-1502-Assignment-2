@@ -1,8 +1,10 @@
 package view;
 
+import java.awt.print.Printable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import exceptions.NegativePriceException;
 import model.Toys;
 
 /**
@@ -124,9 +126,10 @@ private Scanner input; // Scanner object to get the user input
 	public String promptSN(ArrayList<Toys> toyInventory) { 
 		System.out.print("Enter Serial Number (SN): ");
 		String serialNumber = "0";
-		while (true) {
-		if (input.hasNextLine()) {
-			serialNumber = input.nextLine().trim();
+		Long serialNumber1;
+		
+		if (input.hasNextLong()) {
+			serialNumber1 = Long.parseLong(input.nextLine().trim().toLowerCase());
 		} else {
 			System.out.println();
 			System.out.println("Serial Number should only contain digits! Try again.");
@@ -135,26 +138,27 @@ private Scanner input; // Scanner object to get the user input
 			return promptSN(toyInventory);  
 		}
 		
-		if (serialNumber.length() < 10) {
+		if (String.valueOf(serialNumber1).length() != 10) {
 			System.out.println();
 			System.out.println("The Serial Number's length MUST Be 10 Digits! Try again.");
 			System.out.println();
 			return promptSN(toyInventory);  
 		}
 		
+		serialNumber = String.valueOf(serialNumber1);
+	
 		for (Toys t : toyInventory) {
 			if (serialNumber.equals(t.getSerialNumber())) {
 				System.out.println();
 				System.out.println("A Toy With This Serial Number Already Exists! Try Again.");
 				System.out.println();
-				input.nextLine();  
 				return promptSN(toyInventory);  
 			}	
 		}	
 		System.out.println();
 		return serialNumber;
 	}
-	}
+
 	
 	/**
 	 * Prompts the user for the toy name for searching, purchasing, or adding purposes
@@ -236,7 +240,7 @@ private Scanner input; // Scanner object to get the user input
 	 * Prompts the user for the price of the toy when adding a toy
 	 * @return the price of the toy (with two decimal places (double))
 	 */
-	public double promptToyPrice() { 
+	public double promptToyPrice() throws NegativePriceException {
 		double price = -1;
 		while (true) {
 			System.out.print("Enter Toy Price: ");
@@ -251,14 +255,22 @@ private Scanner input; // Scanner object to get the user input
 				continue;  
 			}
 			
-			if (price < 0) {
+			try {
+				if (!(price < 0)) {
+					break;
+				} 
+				
+				else {
+					throw new NegativePriceException();
+				}
+				
+			} catch (Exception e) {
 				System.out.println();
-				System.out.println("Price Cannot Be Negative! Try Again.");
+				e.printStackTrace();
 				System.out.println();
-				continue;  
-			} else {
-				break;
+				continue;	
 			}
+			
 		}
 		System.out.println();
 		return price;
@@ -464,7 +476,6 @@ private Scanner input; // Scanner object to get the user input
 				System.out.println();
 				System.out.println("Minimum Number of Players Cannot Be Negative! Try Again.");
 				System.out.println();
-				input.nextLine();  
 				continue;  
 			} else {
 				break;
@@ -497,7 +508,6 @@ private Scanner input; // Scanner object to get the user input
 				System.out.println();
 				System.out.println("Maximum Number of Players Cannot Be Negative! Try Again.");
 				System.out.println();
-				input.nextLine();  
 				continue;  
 			} else {
 				break;
@@ -796,16 +806,6 @@ private Scanner input; // Scanner object to get the user input
 	public void showSerialNumberNotFound() {
 		System.out.println("No Matches Found! Try Again.");
 		System.out.println();
-	}
-
-	/**
-	 * Informs the user that they entered a minimum player count that is greater than the maximum player count
-	 */
-	public void showPlayerNumberError() {
-		System.out.println("Minimum number of players cannot be greater than the maximum number of players!");
-		System.out.println("Please enter the values again: ");
-		System.out.println();
-		
 	}
 	
 	/**

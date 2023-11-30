@@ -2,8 +2,11 @@ package exceptions;
 
 public class NegativePriceException extends Exception {
 	
-	public NegativePriceException(String message) {
-        super();
+	/**
+	 * Constructor
+	 */
+	public NegativePriceException() {
+		super("Error: Price Cannot Be Negative! Try Again.");
     }
 }
 

@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+import exceptions.MinMaxException;
+import exceptions.NegativePriceException;
 import model.Animals;
 import model.BoardGames;
 import model.Figures;
@@ -261,8 +263,9 @@ public class AppController {
 	/**
 	 * This method is called from the launchApplication method, it will prompt the user for all of the toy's attributes then it
 	 * will add it to the arraylist that will eventually get stored in the txt file
+	 * @throws NegativePriceException 
 	 */
-	private void addNewToy() {
+	private void addNewToy() throws NegativePriceException, MinMaxException {
 		boolean flag3 = true;
 		
 		String serialNumber = appMenu.promptSN(toyInventory);
@@ -281,7 +284,13 @@ public class AppController {
 				int minPlayers = appMenu.promptMinPlayers();
 				int maxPlayers = appMenu.promptMaxPlayers();
 				while (minPlayers > maxPlayers) {
-					appMenu.showPlayerNumberError();
+					try {
+						throw new MinMaxException();
+					} catch (Exception e) {
+						e.printStackTrace();
+						System.out.println();
+					}
+					
 					minPlayers = appMenu.promptMinPlayers();
 					maxPlayers = appMenu.promptMaxPlayers();
 				break;
